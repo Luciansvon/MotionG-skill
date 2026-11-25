@@ -36,3 +36,14 @@ Standard `1.15x` zoom makes typing scenes feel distant. For true tactile typing 
    - Any change to `phoneScale`, `posY`, or `camY`/`camZ` shifts where the 3D bottom CTA pill projects onto 2D (`1080x1920`). Render the click frame still (`f<phoneClick>.png`), detect the white CTA button vertical bounds in Python, and update `Act3OverlayHUD`'s `CursorPointer` waypoint `y` to exact button center `cy`.
 4. **Fade Both Top & Bottom HUD Overlays Before Zoom-In:**
    - Apply both `topApproachFade` and `bottomApproachFade` (~30–48 frames before `phoneClick`) so floating IG Story pills fade out before the zooming 3D phone expands across `bottom: 268px`.
+
+## 5. Bright UI Pop-Out Layering, Tilt-to-Flat Sweep & Continuity Morph (Style 07)
+
+1. **Pop-Out Product Layering:**
+   - Layer clean cutout product PNGs so they break above the card's top border while sitting cleanly in front of oversized muted display text (`card surface -> giant back type -> popped-out cutout -> crisp card copy`).
+2. **Skeleton-to-Live 3D Tilt-to-Flat Sweep:**
+   - Enter the UI container on a tilted 3D perspective plane (`rotateX`/`rotateY`/`rotateZ`) with brief gray skeleton placeholders (`~0.35s`) resolving into live product cards; pan horizontally tracking the cursor across 2–3 selections, then zoom out and flatten to `0deg` when the final choice commits.
+3. **Continuity Card Morph:**
+   - Dismiss unselected sibling cards cleanly while keeping the clicked product card alive on screen across the act transition, sliding it into the left slot of the next status/tracking component.
+4. **Perimeter Border Progress:**
+   - Animate an `SVG` `<rect>` `stroke-dashoffset` (or conic border mask) from `0% -> 100%` around the rounded outer card perimeter in sync with sequential live state text rather than adding redundant inner progress bars.

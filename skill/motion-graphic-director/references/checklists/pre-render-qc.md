@@ -4,6 +4,7 @@ Do NOT declare a render complete until every single gate below is empirically ve
 
 ## Phase A: Before Full 60 FPS Video Render
 - [ ] **UI Anti-Slop Check:** `DESIGN.md` updated, zero glowing traffic-light dots, zero nested cards inside glass, zero fake scores/sparkle glyphs, owner approved 3 HTML->PNG mockups.
+- [ ] **Copy & Spelling Check:** Proofread every rendered headline, sublabel, and CTA character-by-character directly on rendered PNG stills (catches live typos like `"favortie"` before full render).
 - [ ] **Typecheck Clean:** `npx tsc --noEmit` exits `0`.
 - [ ] **Backdrop Bleed Guard:** Extreme camera pans/zooms clamp `AmbientBackdrop` parallax (`<= ±34px`) — inspect macro pan stills to verify zero border seams.
 - [ ] **IG Story Safe Zones Verified visually (`read_file`):**

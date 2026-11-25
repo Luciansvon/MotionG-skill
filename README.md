@@ -9,7 +9,9 @@ Folder ini menyimpan hasil video jadi, catatan riset pembelajaran, dan skill res
   - `ta-modular-mentor-v4-60fps.mp4` (`29,14 MB` · 60 FPS · kualitas utama untuk Reels, TikTok, dan YouTube Shorts)
   - `ta-modular-mentor-v4-igstory-wa-10mb.mp4` (`8,76 MB` · 30 FPS · versi ringan `< 10 MB` untuk kirim lewat WA & unggah IG Story)
 - **`riset-skill/`**
-  Berisi dokumentasi riset sesi ([riset-motion-graphic-ta-mentor.md](./riset-skill/riset-motion-graphic-ta-mentor.md)) yang mencatat pelajaran dari revisi **v1 → v2 → v3 → v4**, hasil ukur acuan **Gojek** & **Pinterest**, perbaikan bug nyata, dan patokan angka hasilnya.
+  Berisi dokumentasi riset pembelajaran:
+  - [riset-motion-graphic-ta-mentor.md](./riset-skill/riset-motion-graphic-ta-mentor.md) — perjalanan revisi **v1 → v2 → v3 → v4**, hasil ukur acuan **Gojek** & **Pinterest**, perbaikan bug nyata, dan patokan angka hasilnya.
+  - [riset-acuan-starbucks-corpius.md](./riset-skill/riset-acuan-starbucks-corpius.md) — hasil bedah acuan ke-3 (**Starbucks / Corpius.ae**) yang melahirkan Gaya 07 (antarmuka terang interaktif & kartu sulap berkelanjutan).
 - **`skill/motion-graphic-director/`**
   Salinan kerja dari skill modular **Motion Graphic Director**. Skill ini dipasangkan pula secara global ke:
   `~/.gemini/config/skills/motion-graphic-director/`

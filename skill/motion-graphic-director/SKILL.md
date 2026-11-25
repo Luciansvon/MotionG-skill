@@ -17,7 +17,7 @@ Use this skill to direct, audit, and produce vertical 9:16 (and multi-format) no
 ## Core Multi-Style Routing Rule
 
 - When the user supplies images/videos as creative direction, ALWAYS load [06-custom-reference-adapter.md](./references/styles/06-custom-reference-adapter.md) and measure reference pacing with [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py).
-- When no custom reference is given, choose or intentionally blend from the 5 distinct art directions in `references/styles/` (mix styles across acts only when dramatic contrast strengthens the story, e.g. calm light editorial intro -> crimson kinetic strike -> dark 3D showcase).
+- When no custom reference is given, choose or intentionally blend from the 6 distinct art directions in `references/styles/` (mix styles across acts only when dramatic contrast strengthens the story, e.g. calm light editorial intro -> crimson kinetic strike -> dark 3D showcase).
 - Communicate progress and design choices clearly in plain language matching the user's preferred tongue without dumping raw coding jargon on non-programmer owners.
 
 ---
@@ -75,6 +75,7 @@ Before suggesting paid SaaS tools, cloud generators, or claiming a limitation:
 | **04 · Dark Studio Hardware** | Obsidian studio sweep, precision metallic/glass rim lighting, dominant 3D device hero (`57%–60%` height) & portal UI dive; ideal for hardware/mobile demos. | [04-dark-studio-hardware.md](./references/styles/04-dark-studio-hardware.md) |
 | **05 · Bold Typography Story** | Expressive scale-contrasted statements, wipe-stamp reveals, rhythmic impact shakes & silent drops; ideal for manifesto hooks, copy-heavy stories, fast campaigns. | [05-bold-typography-story.md](./references/styles/05-bold-typography-story.md) |
 | **06 · Custom Reference Adapter** | Mandatory workflow when the owner uploads screenshots, moodboards, or reference videos — extracts palette, pacing ratio, and camera language without cloning copy. | [06-custom-reference-adapter.md](./references/styles/06-custom-reference-adapter.md) |
+| **07 · Bright Interactive UI Morph** | Daylight brand-mist canvas, pop-out cutout products over giant type, 3D tilt-to-flat catalog sweep, continuity card-to-tracker morph & perimeter border progress (Starbucks/Corpius.ae-style); works in 16:9 & 9:16. | [07-bright-interactive-ui-morph.md](./references/styles/07-bright-interactive-ui-morph.md) |
 
 ### Production Modules (`references/modules/` & `references/checklists/`)
 - [pacing-choreography.md](./references/modules/pacing-choreography.md) — Slow-Fast-Slow timing ratios, reading hold budgets, act segmentation.
