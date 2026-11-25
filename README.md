@@ -7,24 +7,30 @@ Folder ini menyimpan hasil video jadi, catatan riset pembelajaran, dan skill res
 Dua contoh video promo vertikal `9:16` yang diproduksi menggunakan panduan `motion-graphic-director` (kiri: gaya studio terang bebas kotak kartu; kanan: gaya kaca cair gelap):
 
 <table>
-  <tr>
-    <td width="50%" valign="top">
-
-**Promo Robot 3D (`ThreeJS-modeling-skill`)** · 36 detik (`9:16`)<br>
-Gaya studio terang + model robot 3D `Three.js` (animasi `Idle`, `Walk`, `Wave`) + tata letak bebas kotak kartu `antislop` + suara ASMR.
+  <thead>
+    <tr>
+      <th width="50%" align="center">Promo Robot 3D · 36 detik (<code>9:16</code>)</th>
+      <th width="50%" align="center">TA Modular Mentor v4 · 34 detik (<code>9:16</code>)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="50%" align="center" valign="bottom">
 
 https://github.com/user-attachments/assets/66298f51-0c47-4619-8bc5-f3afdd2fa9dd
 
 </td>
-    <td width="50%" valign="top">
-
-**TA Modular Mentor v4** · 34 detik (`9:16`)<br>
-Gaya kaca cair gelap (*Liquid Glass Ambient*) + ponsel 3D `Three.js` + transisi portal + suara ASMR.
+      <td width="50%" align="center" valign="bottom">
 
 https://github.com/user-attachments/assets/22af1907-480d-463c-9066-c33f80e4c4cf
 
 </td>
-  </tr>
+    </tr>
+    <tr>
+      <td width="50%" valign="top">Gaya studio terang + robot 3D <code>Three.js</code> (<code>Idle</code>, <code>Walk</code>, <code>Wave</code>) + tata letak bebas kotak kartu <code>antislop</code> + suara ASMR.</td>
+      <td width="50%" valign="top">Gaya kaca cair gelap (<em>Liquid Glass Ambient</em>) + ponsel 3D <code>Three.js</code> + transisi portal mulus + suara ASMR.</td>
+    </tr>
+  </tbody>
 </table>
 
 ## Susunan Folder
