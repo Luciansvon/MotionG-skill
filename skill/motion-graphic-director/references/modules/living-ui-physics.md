@@ -1,38 +1,63 @@
-# Module: Living UI Physics — Idle Breathing & Elastic Bounce
+# Module: Living UI Physics — Elastic Bounce, Kinetic Type & Tactile UI
 
-Camera motion alone is not enough. During the `60%–83%` calm reading holds, the UI itself must stay subtly alive (**Breathing**), and every interaction must respond physically (**Elastic Bounce & Continuity Morph**) instead of feeling like static PowerPoint slides.
-
----
-
-## 1. Two-Layer Motion Philosophy
-
-1. **Layer A — Camera Guides the Eye:** Macro zooms into dropdowns/sidebars, curved pointer sweeps, pull-backs to show context, and crisp `11x–118x` contrast cuts.
-2. **Layer B — Living UI Keeps Components Alive:** Driven strictly by Remotion frame helpers in [motion_primitives.ts](../../templates/motion_primitives.ts) (zero CSS transitions, zero `Math.random()`).
+Camera motion alone is not enough. During the `60%–83%` calm reading holds, **every visible layer must breathe with staggered life**, primary typography must launch cinematically rather than fade in like flat slides, and UI controls must react physically instead of snapping in 1 frame.
 
 ---
 
-## 2. Idle Breathing UI (Alive During Calm Holds)
+## 1. Two-Layer + Anti-Timid Bounce Philosophy
 
-Apply restrained continuous life so calm holds never freeze like dead screenshots:
-- **Gentle Ambient Float (`ambientBreath`):** `±1%–1.5%` scale breathing and `±4–6px` vertical drift over `100–140` frames (`~1.7–2.3s` cycle) for hero cards, widget clusters, and floating depth layers.
+1. **Layer A — Camera Guides the Eye:** Macro zooms into dropdowns/sidebars, curved pointer sweeps (`evalCursorPos`), pull-backs to show context, and crisp `11x–118x` contrast cuts.
+2. **Layer B — Every Element Alive & Calibrated Bounce:** Driven strictly by deterministic Remotion helpers in [motion_primitives.ts](../../templates/motion_primitives.ts) (zero CSS transitions, zero `Math.random()`).
+
+### Anti-Timid Bounce Bug Warning
+Never crush an elastic curve inside a narrow interpolation like `lerp(0.86, 1, elasticPop(...))` — flattening `1.0 -> 1.20` down to `0.98 -> 1.028` across `~0.03s` destroys bounce visibility on both 60 FPS and 30 FPS renders!
+- Always apply `springBounce(frame, trigger, dur, overshootAmount)` or `elasticPop(...)` directly to scale/position so the overshoot (`12%–22%`) and secondary rebound read unmistakably to the human eye.
+
+---
+
+## 2. Visible Living Idle Breathing (Zero Frozen Screenshots)
+
+Keep calm holds subtly alive so still segments never resemble static screenshots:
+- **Staggered Ambient Float (`ambientBreath`):** Default `±2.2%` scale, `8–12px` vertical drift, and `±1.2deg` micro-tilt over `~110` frames (`1.8s` cycle). Always pass **distinct `phaseOffset` values** (e.g., `0`, `1.4`, `2.7`) to neighboring elements so they float organically instead of moving in lockstep.
 - **Reactive Edge & Aura Glow (`pulseGlow`):**
-  - When a dragged image hovers over a prompt input, brighten the dropzone rim with a smooth glowing aura (`0.35 -> 0.95` alpha) before drop.
-  - Pulse active voice orbs, dark ember light arcs, or status dots smoothly without harsh neon strobing.
-- **Live Micro-Progress:** Ticking countdown rings (`19:24 -> 19:23`), rotating gradient halos, or subtle background card drift during reading holds.
+  - When a dragged image hovers near a prompt input (`hoverProximity`), brighten and widen the dropzone rim (`0.35 -> 0.95` alpha) before impact.
+  - Pulse active voice orbs, dark ember arcs, or primary focal rims smoothly without harsh neon strobing.
+- **Live Micro-Progress:** Ticking counters, rotating gradient halos, or flowing studio grids during character walks.
 
 ---
 
-## 3. Elastic Bounce & Continuity Morph (Tactile Reactions)
+## 3. Kinetic Typography Laws — Zero Flat PowerPoint Fades
 
-Replace stiff linear fades with physical spring mechanics:
-- **Spring Pop-In & Squash-Stretch (`elasticPop` / `squashStretch`):** Cards, prompt bars, and floating icons overshoot briefly (`1.04–1.08x`) before settling cleanly, or compress slightly (`scaleX 1.12, scaleY 0.88`) on impact.
-- **Bouncy Notification Badges (`badgeBounce`):** App icons landing on a home screen pop their unread counter badge with a crisp vertical hop and micro-tilt rebound.
-- **Stateful Capsule & Card Morph (`morphBox`):**
-  - Expand a compact circular/square icon (e.g., heart button or timer badge) smoothly into a full wide status card, then collapse cleanly back into the icon.
-  - Morph thinking status pills (`Analyzing -> Creating Image`) directly into the bounding box of the generated result.
-- **Playing-Card Fan Spread (`cardFanPose`):** Fan `3–5` rounded cards/widgets outward from a single stacked anchor (`rotZ` spread `±18deg`, crisp `zIndex` ordering) instead of popping flat grids abruptly.
-- **Split-Sentence Prompt Insert (`splitInsertGap`):** Part a headline cleanly left and right (`Imagine [...] anything`) while a glowing prompt bar springs into the newly opened gap.
-- **Drag-and-Drop Choreography:**
-  1. Curved pointer (`evalCursorPos`) picks up thumbnail with slight tilt.
-  2. Target input rim widens and lights up (`pulseGlow`).
-  3. Photo drops inside, triggering `squashStretch` + subtle camera recoil (`cameraRecoil`).
+**Hard Rule:** Never reveal primary headlines, key phrases, or closing lockups using a plain whole-block `opacity 0->1` + small `translateY` fade.
+
+- **Word-by-Word Masked Baseline Launch (`maskedWordRise`):** Wrap each word in an `overflow: hidden` inline-block box and stagger words (`4–6` frames apart). Each word shoots up with launch tilt (`~4.5deg`), stretches vertically mid-flight, overshoots baseline cleanly, and squashes gently into position.
+- **Kinetic Exit (`kineticExit`):** Departing headings dip briefly (20% anticipation) before sweeping smoothly off stage.
+- **Accent Keyword Choreography (`shimmerSweep` / `underlineDraw`):** Highlight at most 1 focal word per beat with a crisp self-drawing underline or subtle light shimmer sweep (strictly respecting `antislop` glow/color caps).
+- **Live Numeric Proofs (`rollingNumber`):** Genuine counts, percentages, and completion progress (`10/10`, `89%`, `7.152`, `0% -> 100%`) must roll upward via `rollingNumber` and pop (`settleScale`) on lock — never pop in dead static strings.
+
+---
+
+## 4. Tactile "Wow" UI Micro-Interactions (Zero 1-Frame Teleports)
+
+**Zero Teleport Law:** Never swap an active pill highlight with a 1-frame boolean color flip (`isActive ? blue : transparent`), and never spawn a dropped image slot instantaneously (`width: dropped ? 132 : 0`).
+
+1. **Physical Pointer + Click Ripples:**
+   - Move smoothly along curved arcs (`evalCursorPos`), pinch the arrow (`cursorPressState`) on grabs and clicks, and emit an expanding sonar ring (`clickRipple`) at the exact tap coordinate.
+2. **Magnetic Hover & Elastic Drop Chain:**
+   - Approaching cursor triggers `hoverProximity` glow/lift on target button or dropzone.
+   - Dropping a photo opens its thumbnail slot with `slotExpandSpring` (pushing `"Buat 3D"` text aside smoothly with overshoot), compressing the bar (`squashStretch`) + firing `cameraRecoil`.
+3. **Liquid Segmented / Clip Controls:**
+   - Slide active highlights smoothly with velocity-based horizontal stretch (`slidingPillPose`: stretches wider mid-flight, squashes on arrival).
+   - Rock the entire capsule in 3D like a real seesaw (`tactileTilt`) toward left (`-1`), center (`0`), or right (`+1`) on click.
+4. **Satisfying Completion Lockup:**
+   - Perimeter progress stroke draws around capsule -> `rollingNumber` counts `0% -> 100%` -> crisp completion checkmark springs in (`springBounce`) + restrained geometric burst (`burstParticlePose`, `6–8` ticks in one accent hue — zero confetti clutter).
+
+---
+
+## 5. Calibration Table by Gate 3 `MOTION` Dial (`1–3`)
+
+| Gate 3 Dial | Spring Overshoot | Squash-Stretch | Idle Float (`ambientBreath`) | Recommended Text & UI Set |
+|---|---|---|---|---|
+| **`MOTION 1` (Restrained Editorial)** | `0.08–0.10` | `0.08` | `ampY: 6px`, `ampScale: 0.014` | Gentle `maskedWordRise`, `underlineDraw`, clean `slidingPillPose`. |
+| **`MOTION 2` (Crisp Product Demo — Default)** | `0.14–0.16` | `0.16` | `ampY: 10px`, `ampScale: 0.022` | Full `maskedWordRise`, `rollingNumber`, `slidingPillPose` + `tactileTilt` + `clickRipple` + `slotExpandSpring`. |
+| **`MOTION 3` (Playful Elastic Pop)** | `0.20–0.24` | `0.22` | `ampY: 12px`, `ampScale: 0.028` | Punchy `cardFanPose`, `badgeBounce`, `shimmerSweep`, `burstParticlePose`, bold `squashStretch`. |

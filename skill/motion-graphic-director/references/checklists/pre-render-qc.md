@@ -9,7 +9,12 @@ Do NOT declare a render complete until every single gate below is empirically ve
 - [ ] **Dose Caps & Anti-Card-Cage (`R-10..14`):** Max `1–2` frosted glass surfaces, max `1–2` focal glows, zero nested cards inside glass, zero traffic-light dots/sparkle glyphs, and **zero card cages around 3D hero models**.
 - [ ] **Zero Dead UI Controls (`R-26 / C-2`):** Every visible button, tab, dropdown, or chapter rail is clicked/used during the video — zero unclicked decorative chrome remains.
 - [ ] **Act Rhythm, Mockup Approval & Swap-Logo Test (`R-05 / R-20`):** Owner explicitly approved 3 compositionally distinct Gate 3 PNG mockups, and the style still passes the Swap-Logo distinctiveness test.
-- [ ] **Living UI Check:** Calm holds feature subtle idle breathing (float/glow/pulse), while interactive beats use elastic spring bounce or continuity morph — zero frozen-slide frames.
+- [ ] **Living UI & Visible Bounce Check:**
+  - Calm holds use staggered `ambientBreath` (`>= 8px` drift / `±1.8–2.2%` scale, distinct `phaseOffset`) — zero dead slides.
+  - Elastic entrances apply `springBounce` / `elasticPop` directly (`12%–22%` overshoot, NOT crushed via `lerp(0.86, 1, pop)`) and drops trigger visible `squashStretch` + `cameraRecoil`.
+- [ ] **Kinetic Typography & Zero 1-Frame Teleports Check:**
+  - Primary headlines and outro lockups use `maskedWordRise` / staggered kinetic word motion (zero flat whole-block opacity fades), and real metrics/progress animate with `rollingNumber`.
+  - Segmented/tab controls glide with `slidingPillPose` + `tactileTilt`, dropped slots expand via `slotExpandSpring`, and every click fires `cursorPressState` + `clickRipple` (zero 1-frame color or width snaps).
 - [ ] **Asset Hierarchy & Quality Check:** All UI/buttons/charts built in code and 3D devices in `Three.js` (zero lazy `PNG` UI shortcuts); every optional `PNG`/`WebP` visually inspected via `read_file` (sharp, aspect-locked, zero watermarks, clean cutout edges).
 - [ ] **Copy & Anti-Slop Spelling Check:** Copy completed `Draft -> Audit -> Final` (zero em dashes `—`, zero AI vocabulary/negative parallelism/staccato drama/generic CTAs/headline emojis) AND proofread character-by-character directly on rendered PNG stills.
 - [ ] **Portrait `9:16` Reflow Check (`C-4`):** Split-insert transitions use vertical/diagonal reflow when wide prompt bars appear, macro pans stay free of horizontal edge clipping (`X = 72..1008px`), and tall 3D props clear top/bottom copy.

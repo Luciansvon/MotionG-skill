@@ -55,11 +55,13 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 3. Lock the 1-line **Design Read**, **`ENERGY / RHYTHM / MOTION` (1–3)** dials, palette/surface dose caps (`R-29`, `R-31` 1-line rationales), and `Draft -> Audit -> Final` anti-slop copy in `DESIGN.md`.
 4. Render **3 compositionally distinct static mockups** (`R-05`, zero card cages around 3D heroes `R-14`, zero dead UI controls `R-26`) at target aspect ratio (ephemeral `127.0.0.1` server + Chrome `--user-data-dir`), verify exact unrounded contrast via [check_contrast.py](./scripts/check_contrast.py) (`>= 4.5:1` normal text / `>= 3.0:1` large & UI boundaries), inspect all 3 PNGs via `read_file`, and **obtain explicit owner approval** before Remotion coding.
 
-### Gate 4: Two-Layer Choreography — Eye-Guiding Camera + Living UI
+### Gate 4: Two-Layer Choreography — Eye-Guiding Camera, Kinetic Type & Living UI
 1. Read [pacing-choreography.md](./references/modules/pacing-choreography.md), [camera-and-3d.md](./references/modules/camera-and-3d.md), and [living-ui-physics.md](./references/modules/living-ui-physics.md).
 2. Reuse deterministic 60 FPS primitives in [motion_primitives.ts](./templates/motion_primitives.ts):
    - Maintain `55%–83%` calm readable holds (`1.8–2.2s` per key line) contrasted against crisp `0.35–0.85s` transitions (`11x–118x` burst contrast).
-   - Keep calm holds alive with `ambientBreath` / `pulseGlow`, and drive reactions with `elasticPop`, `squashStretch`, `badgeBounce`, `morphBox`, `cardFanPose`, `splitInsertGap`, and `cameraRecoil`.
+   - **Visible Bounce & Staggered Idle Life:** Drive entrances with full `springBounce` / `elasticPop` (`12%–22%` overshoot; never dilute via `lerp(0.86, 1, pop)`), drops with `squashStretch` + `cameraRecoil`, and calm holds with staggered `ambientBreath` / `pulseGlow`.
+   - **Zero Flat Headline Fades:** Animate key copy word-by-word via `maskedWordRise` + `kineticExit`, accent keywords via `shimmerSweep` / `underlineDraw`, and real stats/progress via `rollingNumber`.
+   - **Zero 1-Frame UI Teleports:** Pair curved pointer sweeps (`evalCursorPos`) with `cursorPressState` + `clickRipple`, smooth `slotExpandSpring` drops, liquid `slidingPillPose` + `tactileTilt` tab clicks, `morphBox`, `cardFanPose`, `splitInsertGap`, and restrained completion `burstParticlePose`.
    - Use `2.35x–2.45x` macro zooms with clamped backdrop parallax (`<= ±34px`), mount `<ThreeCanvas>` **OUTSIDE** `<CameraMotionBlur>`, never pass `frame` as a prop inside `<CameraMotionBlur>`, keep hero 3D phones around `57%–60%` height (`max_z < -0.5` for orbital rings).
 
 ### Gate 5: ASMR Tactile Sound Design & Audio Mastering
@@ -97,7 +99,7 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 
 ### Production Modules (`references/modules/` & `references/checklists/`)
 - [storyboard-segments.md](./references/modules/storyboard-segments.md) — Gate 1 mandatory Q&A + Gate 2 8-segment storyboard builder & 2–6 word visual-explain budget.
-- [living-ui-physics.md](./references/modules/living-ui-physics.md) — Two-layer motion rules: idle breathing UI + elastic bounce, squash-stretch, drag-drop glow, card fans & capsule morphs.
+- [living-ui-physics.md](./references/modules/living-ui-physics.md) — Two-layer motion rules: staggered breathing UI, calibrated elastic bounce, kinetic typography (`maskedWordRise`/`rollingNumber`), liquid sliding pills, tactile tilts, drag-drop springs, and `MOTION` 1–3 calibration.
 - [visual-assets-engine.md](./references/modules/visual-assets-engine.md) — Strict `Code -> Three.js -> Optional PNG/WebP` hierarchy, 4-step sourcing fallback, anti-lazy-PNG & copyright rules.
 - [pacing-choreography.md](./references/modules/pacing-choreography.md) — Slow-Fast-Slow timing ratios, 10 measured reference benchmarks, reading hold budgets.
 - [camera-and-3d.md](./references/modules/camera-and-3d.md) — Eye-guiding camera keyframes, macro UI focus, `2.4x` typing rail, Three.js 3D rules, CTA pixel-lock, continuity morphs.
@@ -107,7 +109,7 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 - [pre-render-qc.md](./references/checklists/pre-render-qc.md) — Mandatory Phases A–D go/no-go verification checklist and 4-Block Delivery Gate before delivery.
 
 ### Reusable Templates & Tools (`templates/` & `scripts/`)
-- [motion_primitives.ts](./templates/motion_primitives.ts) — Ready-to-copy 60 FPS deterministic easing, camera rig, recoil, shake, rack-focus, cursor arc, plus Living UI breathing/bounce/morph/fan/split-insert helpers.
+- [motion_primitives.ts](./templates/motion_primitives.ts) — Ready-to-copy 60 FPS deterministic easing, camera rig, recoil, shake, rack-focus, cursor arc + pinch/ripples, calibrated springs (`springBounce`/`elasticPop`/`squashStretch`), kinetic typography (`maskedWordRise`/`rollingNumber`/`shimmerSweep`), and liquid UI helpers (`slidingPillPose`/`tactileTilt`/`slotExpandSpring`).
 - [mix_asmr_template.py](./templates/mix_asmr_template.py) — Parameterized Python ASMR + BGM mixing & R128 mastering pipeline.
 - [check_contrast.py](./scripts/check_contrast.py) — Standalone exact-unrounded WCAG 2.x contrast checker (`4.5:1` text, `3.0:1` large display & UI boundaries, batch + `--selftest`).
 - [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py) — CLI analyzer measuring calm-vs-motion pacing ratio, `ffprobe` streams, and stereo audio peaks/crest/dynamics.
