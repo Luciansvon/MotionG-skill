@@ -2,6 +2,8 @@
 
 Jumping straight into Remotion coding without locking taste, composition variety, measured contrast, and liveliness wastes full render cycles on generic "AI slop" templates.
 
+> **Attribution:** The 3-tier anti-slop filter, Liveliness toolkit, craftsmanship criteria (`C-1..C-5`), copy audit flow, and exact unrounded WCAG contrast discipline in this module are adapted for motion graphics from **[miqdadbadjuber/anti-slop](https://github.com/miqdadbadjuber/anti-slop)** (MIT License, `v3.2.32`).
+
 This module replaces simple negative-only checklists with a **Filter + Liveliness Balance**: eliminate AI slop without flattening the video into a sterile, lifeless slide deck. Visual techniques (frosted glass, shadows, glows, gradients, grids) are tools — every one is allowed **only when it earns its place with a written reason and stays within dose caps**.
 
 ---

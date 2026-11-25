@@ -2,6 +2,11 @@
 
 Catatan ini merangkum hasil evaluasi menyeluruh terhadap rangkaian panduan `antislop` (modul inti, tampilan antarmuka, keterbacaan kontras, naskah, tata letak layar tegak, dan catatan kode), bukti kegagalan dari uji coba nyata video promo Robot 3D, serta detail penerapannya ke dalam skill `motion-graphic-director`.
 
+## Kredit Sumber
+
+- **Repositori acuan:** [miqdadbadjuber/anti-slop](https://github.com/miqdadbadjuber/anti-slop) (`miqdadbadjuber`, lisensi `MIT`, versi acuan `v3.2.32`).
+- Seluruh konsep sistem 3 lapisan, batas takaran efek, perangkat daya hidup tampilan, standar keahlian `C-1..C-5`, saringan naskah, aturan tata letak ulang layar tegak, dan disiplin perhitungan kontras WCAG 2.x eksak diadaptasi khusus untuk kebutuhan produksi video motion graphic pada repositori ini.
+
 ---
 
 ## 1. Mengapa Aturan Lama `ui-antislop-gate.md` (26 Baris) Belum Cukup?

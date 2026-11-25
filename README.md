@@ -4,9 +4,28 @@ Folder ini menyimpan hasil video jadi, catatan riset pembelajaran, dan skill res
 
 ## Contoh Hasil Video
 
-Cuplikan video promo vertikal `9:16` berdurasi **36 detik** (model robot 3D `Three.js` dengan animasi `Idle`, `Walk`, dan `Wave`, tata letak bebas kotak kartu `antislop`, serta suara ASMR) yang diproduksi penuh menggunakan panduan `motion-graphic-director`:
+Dua contoh video promo vertikal `9:16` yang diproduksi menggunakan panduan `motion-graphic-director` (kiri: gaya studio terang bebas kotak kartu; kanan: gaya kaca cair gelap):
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+
+**Promo Robot 3D (`ThreeJS-modeling-skill`)** · 36 detik (`9:16`)<br>
+Gaya studio terang + model robot 3D `Three.js` (animasi `Idle`, `Walk`, `Wave`) + tata letak bebas kotak kartu `antislop` + suara ASMR.
 
 https://github.com/user-attachments/assets/66298f51-0c47-4619-8bc5-f3afdd2fa9dd
+
+</td>
+    <td width="50%" valign="top">
+
+**TA Modular Mentor v4** · 34 detik (`9:16`)<br>
+Gaya kaca cair gelap (*Liquid Glass Ambient*) + ponsel 3D `Three.js` + transisi portal + suara ASMR.
+
+https://github.com/user-attachments/assets/22af1907-480d-463c-9066-c33f80e4c4cf
+
+</td>
+  </tr>
+</table>
 
 ## Susunan Folder
 
@@ -28,3 +47,7 @@ https://github.com/user-attachments/assets/66298f51-0c47-4619-8bc5-f3afdd2fa9dd
 ## Catatan Pengembangan Lanjutan
 
 Kalau kamu ingin menambah gaya editing baru (misal gaya animasi papan ketik retro, kartu majalah terang, atau efek transisi tertentu), cukup tambahkan berkas panduan baru di dalam `skill/motion-graphic-director/references/styles/`, daftarkan tautannya di `SKILL.md`, lalu salin ulang isinya ke folder skill global.
+
+## Kredit & Referensi
+
+- **[miqdadbadjuber/anti-slop](https://github.com/miqdadbadjuber/anti-slop)** (lisensi `MIT`, versi acuan `v3.2.32`) — referensi utama kerangka mutu anti-slop 3 lapisan, batas takaran efek, perangkat daya hidup tampilan, saringan naskah, tata letak layar tegak, dan konsep pemeriksa kontras WCAG 2.x eksak yang diadaptasi ke `motion-graphic-director`.

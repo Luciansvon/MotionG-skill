@@ -3,6 +3,7 @@
 
 Zero external dependencies. Evaluates verdicts against the unrounded contrast
 ratio so near-threshold pairings like 4.498:1 never pass 4.5:1 by rounding.
+Exact unrounded verification pattern adapted from miqdadbadjuber/anti-slop (antislop-human, MIT License).
 
 Usage:
     python scripts/check_contrast.py "#FFFFFF" "#0369A1"
