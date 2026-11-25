@@ -3,7 +3,10 @@
 Do NOT declare a render complete until every single gate below is empirically verified from actual files and rendered images.
 
 ## Phase A: Before Full 60 FPS Video Render
+- [ ] **Scope Q&A & Storyboard Approved:** Gate 1 Q&A completed and Gate 2 segmented storyboard approved by owner (`2–6` words/beat visual-explain budget honored).
 - [ ] **UI Anti-Slop Check:** `DESIGN.md` updated, zero glowing traffic-light dots, zero nested cards inside glass, zero fake scores/sparkle glyphs, owner approved 3 HTML->PNG mockups.
+- [ ] **Living UI Check:** Calm holds feature subtle idle breathing (float/glow/pulse), while interactive beats use elastic spring bounce or continuity morph — zero frozen-slide frames.
+- [ ] **Asset Hierarchy & Quality Check:** All UI/buttons/charts built in code and 3D devices in `Three.js` (zero lazy `PNG` UI shortcuts); every optional `PNG`/`WebP` visually inspected via `read_file` (sharp, aspect-locked, zero watermarks, clean cutout edges).
 - [ ] **Copy & Spelling Check:** Proofread every rendered headline, sublabel, and CTA character-by-character directly on rendered PNG stills (catches live typos like `"favortie"` before full render).
 - [ ] **Typecheck Clean:** `npx tsc --noEmit` exits `0`.
 - [ ] **Backdrop Bleed Guard:** Extreme camera pans/zooms clamp `AmbientBackdrop` parallax (`<= ±34px`) — inspect macro pan stills to verify zero border seams.

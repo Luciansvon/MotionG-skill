@@ -224,3 +224,122 @@ export const hoverProximity = (
   const raw = clamp(1 - dist / Math.max(1, radius), 0, 1);
   return raw * raw * (3 - 2 * raw);
 };
+
+export const ambientBreath = (
+  frame: number,
+  periodFrames = 120,
+  ampScale = 0.015,
+  ampY = 5
+): { scale: number; y: number } => {
+  const phase = (frame / Math.max(1, periodFrames)) * Math.PI * 2;
+  return {
+    scale: 1 + Math.sin(phase) * ampScale,
+    y: Math.cos(phase) * ampY,
+  };
+};
+
+export const pulseGlow = (
+  frame: number,
+  periodFrames = 90,
+  minAlpha = 0.35,
+  maxAlpha = 0.95
+): number => {
+  const wave = 0.5 - 0.5 * Math.cos((frame / Math.max(1, periodFrames)) * Math.PI * 2);
+  return lerp(minAlpha, maxAlpha, wave);
+};
+
+export const elasticPop = (
+  frame: number,
+  triggerFrame: number,
+  durationFrames = 24,
+  damping = 5.5,
+  freq = 14
+): number => {
+  const p = progress(frame, triggerFrame, durationFrames);
+  if (p <= 0) return 0;
+  if (p >= 1) return 1;
+  return 1 - Math.exp(-damping * p) * Math.cos(freq * p);
+};
+
+export const squashStretch = (
+  frame: number,
+  triggerFrame: number,
+  durationFrames = 18,
+  strength = 0.14
+): { scaleX: number; scaleY: number } => {
+  const p = progress(frame, triggerFrame, durationFrames);
+  if (p <= 0 || p >= 1) return { scaleX: 1, scaleY: 1 };
+  const impulse = Math.exp(-5.0 * p) * Math.sin(p * Math.PI * 3.0) * strength;
+  return {
+    scaleX: 1 + impulse,
+    scaleY: 1 / Math.max(0.5, 1 + impulse),
+  };
+};
+
+export const badgeBounce = (
+  frame: number,
+  triggerFrame: number,
+  durationFrames = 22
+): { scale: number; y: number; rot: number } => {
+  const p = progress(frame, triggerFrame, durationFrames);
+  if (p <= 0) return { scale: 0, y: 8, rot: -10 };
+  if (p >= 1) return { scale: 1, y: 0, rot: 0 };
+  const pop = elasticPop(frame, triggerFrame, durationFrames, 5.2, 13.5);
+  const env = Math.exp(-4.8 * p);
+  return {
+    scale: Math.max(0, pop),
+    y: -Math.abs(Math.sin(p * Math.PI * 2)) * 10 * env,
+    rot: Math.sin(p * Math.PI * 3) * 8 * env,
+  };
+};
+
+export const morphBox = (
+  progress01: number,
+  from: { w: number; h: number; r: number },
+  to: { w: number; h: number; r: number }
+): { w: number; h: number; r: number } => {
+  const t = snappyInOut(progress01);
+  return {
+    w: lerp(from.w, to.w, t),
+    h: lerp(from.h, to.h, t),
+    r: lerp(from.r, to.r, t),
+  };
+};
+
+export const cardFanPose = (
+  index: number,
+  total: number,
+  spreadProgress: number,
+  maxAngleDeg = 18,
+  spacingPx = 110
+): { x: number; y: number; rotZ: number; zIndex: number } => {
+  const t = snappyOut(spreadProgress);
+  const mid = (total - 1) / 2;
+  const norm = total > 1 ? (index - mid) / Math.max(0.5, mid) : 0;
+  return {
+    x: norm * spacingPx * t,
+    y: Math.abs(norm) * Math.abs(norm) * 26 * t,
+    rotZ: norm * maxAngleDeg * t,
+    zIndex: Math.round(total - Math.abs(index - mid)),
+  };
+};
+
+export const splitInsertGap = (
+  progress01: number,
+  targetGapPx: number
+): {
+  leftOffsetPx: number;
+  rightOffsetPx: number;
+  insertScale: number;
+  insertOpacity: number;
+} => {
+  const t = snappyOut(progress01);
+  const half = (targetGapPx * 0.5) * t;
+  const insertT = clamp((t - 0.18) / 0.82, 0, 1);
+  return {
+    leftOffsetPx: -half,
+    rightOffsetPx: half,
+    insertScale: lerp(0.72, 1.0, overshoot(insertT, 1.4)),
+    insertOpacity: clamp(insertT * 1.4, 0, 1),
+  };
+};

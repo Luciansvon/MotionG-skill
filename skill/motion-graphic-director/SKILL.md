@@ -1,66 +1,81 @@
 ---
 name: motion-graphic-director
 description: >-
-  Modular director and production runbook for diverse vertical 9:16 and
-  multi-style motion graphic videos (Remotion, Three.js 3D hardware,
-  anti-slop UI mockups, Slow-Fast-Slow pacing, macro interactive camera
-  choreography, ASMR tactile sound design, universal IG Story/Reels/TikTok
-  safe zones, and dual-output <10 MB WA + 60 FPS master delivery). Use when
-  designing, auditing, or producing kinetic product promos, UI demos, or
+  Modular 8-gate director and production runbook for vertical 9:16 and
+  landscape 16:9 multi-style motion graphic videos (mandatory scope Q&A,
+  segmented visual-explain storyboards, Code -> Three.js -> optional PNG/WebP
+  asset hierarchy, eye-guiding camera + breathing/bouncy Living UI, ASMR
+  tactile audio, universal safe zones, and 60 FPS + <10 MB delivery). Use
+  when designing, auditing, or producing kinetic product promos, UI demos, or
   diverse-style motion graphic videos.
 ---
 
-# Motion Graphic Director (Multi-Style 6-Gate Runbook)
+# Motion Graphic Director (8-Gate Living-UI & Visual-Explain Runbook)
 
-Use this skill to direct, audit, and produce vertical 9:16 (and multi-format) non-VO or rhythm-driven motion graphic promo videos. **Never default blindly to one visual template** — pick the style module matching the brief or decompose the owner's custom reference first, pass anti-slop visual mockup approval, and verify rendered frames and stereo audio before full export.
+Use this skill to direct, audit, and produce vertical `9:16` and landscape `16:9` motion graphic promo videos. **Never skip Gate 1 Scope Q&A, Gate 2 Segmented Storyboard approval, or Gate 3 mockup approval**, and never default blindly to one visual template.
 
-## Core Multi-Style Routing Rule
+## Core Multi-Style & Visual-Explain Rules
 
-- When the user supplies images/videos as creative direction, ALWAYS load [06-custom-reference-adapter.md](./references/styles/06-custom-reference-adapter.md) and measure reference pacing with [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py).
-- When no custom reference is given, choose or intentionally blend from the 6 distinct art directions in `references/styles/` (mix styles across acts only when dramatic contrast strengthens the story, e.g. calm light editorial intro -> crimson kinetic strike -> dark 3D showcase).
-- Communicate progress and design choices clearly in plain language matching the user's preferred tongue without dumping raw coding jargon on non-programmer owners.
+- **Custom Reference First:** When the owner supplies images or videos as creative direction, ALWAYS load [06-custom-reference-adapter.md](./references/styles/06-custom-reference-adapter.md) and measure reference pacing with [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py).
+- **9 Built-In Art Directions (`01–05`, `07–10`):** When no custom reference is given, choose or intentionally blend across acts (mix styles only when dramatic contrast strengthens the story).
+- **Visual-Explain First (`2–6 words/beat`):** Show actions visually (drag-and-drop, dropdown pick, morphing pills, fan spreads) instead of text walls.
+- **Two-Layer Motion:** Pair eye-guiding camera moves with **Living UI** (idle breathing during calm holds + elastic squash-stretch bounce/morph on reactions).
+- **Strict Medium Hierarchy:** Build UI in **Code**, 3D devices in **`Three.js`**, and use **`PNG`/`WebP` ONLY when genuinely needed** for complex photographic/organic subjects.
+- Communicate progress and design choices clearly in plain language matching the owner's preferred tongue without raw coding jargon.
 
 ---
 
-## 6-Gate Production Pipeline
+## 8-Gate Production Pipeline
 
-Follow these gates in order. Never skip Gate 1 mockup approval or Gate 4 still inspection.
+Follow these gates strictly in order.
 
-### Gate 0: Audit Local Capabilities First
-Before suggesting paid SaaS tools, cloud generators, or claiming a limitation:
-1. Check `package.json` (`@remotion/three`, `@remotion/motion-blur`, `@remotion/google-fonts`, `three`), installed `ffmpeg`/`ffprobe`, headless Chrome, and local/workspace SFX folders.
-2. Check existing local projects or style specs (`DESIGN.md`, shared audio libraries).
+### Gate 0: Audit Local Capabilities & Asset Tools First
+Before suggesting paid SaaS tools or claiming a limitation:
+1. Check `package.json` (`@remotion/three`, `@remotion/motion-blur`, `@remotion/google-fonts`, `three`), installed `ffmpeg`/`ffprobe`, headless Chrome, and local SFX/asset folders.
+2. Check available image generation tools (`image-generator` or local media tools) and existing style specs (`DESIGN.md`).
 
-### Gate 1: Style Selection & Anti-Slop UI Approval
-1. Load the target style playbook from `references/styles/` (see Style Index below).
-2. Read [ui-antislop-gate.md](./references/modules/ui-antislop-gate.md).
-3. Lock typography, palette, glass/surface budget, and product copy in `DESIGN.md`.
-4. Render **3 static `1080x1920` PNG UI mockups** (serve local assets via ephemeral `http://127.0.0.1` + fresh Chrome `--user-data-dir`), verify WCAG AA pixel contrast (`>= 4.5:1`), inspect via `read_file`, and **obtain explicit owner approval** before writing Remotion scenes.
+### Gate 1: Mandatory Scope Q&A (NEVER SKIP)
+Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Section 1 and lock scope with the owner in 1 concise plain-language round (confirm stated items, ask only what is missing):
+1. Product & single core takeaway.
+2. Screen format & destination (`9:16`, `16:9`, or dual).
+3. Runtime tier (`10–15s` micro, `18–25s` punchy, `30–45s` walkthrough).
+4. Visual direction (custom reference vs Styles `01–05`, `07–10`).
+5. Audio direction (non-VO + ASMR default vs `3–6` words/beat micro-VO; BGM choice).
+6. Existing authentic brand logos, screenshots, or product photos.
 
-### Gate 2: Slow-Fast-Slow Pacing & 3D/Macro Camera Choreography
-1. Read [pacing-choreography.md](./references/modules/pacing-choreography.md):
-   - Default to **no voiceover** for kinetic app/product promos unless explicitly requested.
-   - Maintain a true **Slow-Fast-Slow** contrast ratio (`55%–81%` calm readable holds at `1.8–2.2s` per card/statement, balanced with `0.3–0.8s` crisp transitions; `~30–36s` for 6 full acts).
-2. Read [camera-and-3d.md](./references/modules/camera-and-3d.md) and reuse deterministic primitives in [motion_primitives.ts](./templates/motion_primitives.ts):
-   - Use macro typing rails (`2.35x–2.45x` zoom + linear pan with clamped backdrop parallax `<= ±34px`).
-   - Mount `<ThreeCanvas>` **OUTSIDE** `<CameraMotionBlur>`; every child inside `<CameraMotionBlur>` must call `useCurrentFrame()` internally.
-   - Keep hero 3D phones sized cleanly around `57%–60%` of frame height with background orbital geometry strictly behind `max_z < -0.5`.
+### Gate 2: Segmented Storyboard & Asset Medium Manifest (Owner Approval Required)
+1. Read [storyboard-segments.md](./references/modules/storyboard-segments.md) and [visual-assets-engine.md](./references/modules/visual-assets-engine.md).
+2. Map the video across the **8 standard segments** (`Hook`, `Problem Agitation`, `Product Reveal`, `Feature Demo #1`, `Feature Demo #2`, `Tangible Proof`, `Message Lockup`, `Outro & CTA`), keeping copy within `2–6` words per beat.
+3. Declare the medium per element (**Tier 1 Code -> Tier 2 `Three.js` -> Tier 3 Optional `PNG`/`WebP` only if needed**; never flatten UI/buttons/3D hardware into lazy PNGs).
+4. Present the **6-column storyboard table** and obtain explicit owner approval before Gate 3.
 
-### Gate 3: ASMR Tactile Sound Design & Audio Mastering
+### Gate 3: Style Selection, Tier-3 Asset Prep & 3 Anti-Slop Mockups (Owner Approval Required)
+1. Load the chosen style playbook(s) from `references/styles/` and read [ui-antislop-gate.md](./references/modules/ui-antislop-gate.md).
+2. If Tier 3 `PNG`/`WebP` assets are approved in Gate 2, follow the 4-step sourcing fallback (Owner assets -> AI generate -> Royalty-free Unsplash/Pexels/Wikimedia/Pixabay without anti-bot bypass; Pinterest moodboard-only -> Honest request) and inspect every asset via `read_file`.
+3. Lock typography, palette, surface budget, and authentic copy in `DESIGN.md`.
+4. Render **3 static UI mockups** at target aspect ratio (ephemeral `127.0.0.1` server + Chrome `--user-data-dir`), verify `>= 4.5:1` WCAG AA contrast, inspect via `read_file`, and **obtain explicit owner approval** before Remotion coding.
+
+### Gate 4: Two-Layer Choreography — Eye-Guiding Camera + Living UI
+1. Read [pacing-choreography.md](./references/modules/pacing-choreography.md), [camera-and-3d.md](./references/modules/camera-and-3d.md), and [living-ui-physics.md](./references/modules/living-ui-physics.md).
+2. Reuse deterministic 60 FPS primitives in [motion_primitives.ts](./templates/motion_primitives.ts):
+   - Maintain `55%–83%` calm readable holds (`1.8–2.2s` per key line) contrasted against crisp `0.35–0.85s` transitions (`11x–118x` burst contrast).
+   - Keep calm holds alive with `ambientBreath` / `pulseGlow`, and drive reactions with `elasticPop`, `squashStretch`, `badgeBounce`, `morphBox`, `cardFanPose`, `splitInsertGap`, and `cameraRecoil`.
+   - Use `2.35x–2.45x` macro zooms with clamped backdrop parallax (`<= ±34px`), mount `<ThreeCanvas>` **OUTSIDE** `<CameraMotionBlur>`, never pass `frame` as a prop inside `<CameraMotionBlur>`, keep hero 3D phones around `57%–60%` height (`max_z < -0.5` for orbital rings).
+
+### Gate 5: ASMR Tactile Sound Design & Audio Mastering
 1. Read [sound-asmr-engine.md](./references/modules/sound-asmr-engine.md) and adapt [mix_asmr_template.py](./templates/mix_asmr_template.py).
-2. Replace harsh metallic shutters, cartoon slaps, and clattering typewriters with pleasant ASMR textures (`Topre` / `Gateron Ink Black` keystrokes, soft low-passed mouse clicks, pentatonic water/liquid drops, trimmed airy whooshes, warm low-passed sub-thumps).
-3. Carve `2` brief **Silent Drops (`230–240 ms`)** before major reveals and measure stereo (`-ac 2`) output: `peak <= 0.92`, `crest_db >= 14.0`, `dyn_p95_p10_db >= 12.0`.
+2. Sync tactile ASMR cues (`Topre`/`Gateron` typing, soft glassy clicks, pentatonic drops, trimmed air whooshes, warm low-passed sub-thumps) to every bounce, drag-drop, and transition.
+3. Carve `2` brief **Silent Drops (`230–240 ms`)** before major turns and verify stereo (`-ac 2`) mastering: `peak <= 0.92`, `crest_db >= 14.0`, `dyn_p95_p10_db >= 12.0`.
 
-### Gate 4: Universal Safe Zones & Visual Still Inspection
-1. Read [export-safezones.md](./references/modules/export-safezones.md) and run every check in [pre-render-qc.md](./references/checklists/pre-render-qc.md).
-2. Keep all critical headlines, captions, and pills inside **`Y = 245..1655px`** (`1080x1920`), safe simultaneously for IG Story, Reels, TikTok, and YouTube Shorts.
-3. Fade both top and bottom floating HUD overlays smoothly before 3D lean-in zooms.
-4. Render keyframe stills (`npx remotion still`), measure the rendered 3D CTA button center in pixels to **pixel-lock** cursor taps, and visually inspect every still via `read_file`.
+### Gate 6: Safe Zones, Copy Spelling, Asset QC & Visual Still Inspection
+1. Read [export-safezones.md](./references/modules/export-safezones.md) and run every item in [pre-render-qc.md](./references/checklists/pre-render-qc.md).
+2. For vertical `9:16`, keep critical text/pills inside **`Y = 245..1655px`** and fade floating HUDs before 3D lean-in zooms.
+3. Render keyframe stills (`npx remotion still`), proofread **all copy character-by-character**, verify asset sharpness/proportions, pixel-lock 2D cursor taps to 3D CTA centers, and inspect every still via `read_file`.
 
-### Gate 5: Dual-Output Rendering & Final Verification
-1. Render full **`1080x1920 @ 60 FPS`** master (`--crf=18 --audio-bitrate=192k`).
-2. Encode crisp **`< 10 MB`** WA & IG Story version (`1080x1920 @ 30 FPS`) using [export_wa_igstory_10mb.py](./scripts/export_wa_igstory_10mb.py) (`aq-mode=3` dark-gradient protection, target `~8.5–9.3 MB`).
-3. Verify BOTH MP4s with [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py) and inspect 2 extracted stills from the `< 10 MB` file before delivery.
+### Gate 7: Dual-Output Rendering & Final Verification
+1. Render **`60 FPS`** master (`--crf=18 --audio-bitrate=192k`).
+2. When targeting mobile sharing/IG Story in `9:16`, also encode **`< 10 MB`** `30 FPS` version via [export_wa_igstory_10mb.py](./scripts/export_wa_igstory_10mb.py) (`aq-mode=3` dark-gradient protection).
+3. Verify output MP4(s) with [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py) and inspect extracted stills before delivery.
 
 ---
 
@@ -70,23 +85,29 @@ Before suggesting paid SaaS tools, cloud generators, or claiming a limitation:
 | Style ID | Aesthetic & When to Pick | Playbook |
 |---|---|---|
 | **01 · Liquid Glass Ambient** | Translucent refractive crystal glass over dark cobalt-periwinkle velvet folds; ideal for AI tools, flagship SaaS, modern sleek promos. | [01-liquid-glass-ambient.md](./references/styles/01-liquid-glass-ambient.md) |
-| **02 · Clean Editorial App** | Warm ivory/off-white ground, airy typography, 80% calm breathing holds (Gojek-style); ideal for productivity, consumer apps, clarity-first explainers. | [02-clean-editorial-app.md](./references/styles/02-clean-editorial-app.md) |
+| **02 · Clean Editorial App** | Warm ivory/off-white ground, airy typography, ~80% calm breathing holds (Gojek-style); ideal for productivity, consumer apps, clarity-first explainers. | [02-clean-editorial-app.md](./references/styles/02-clean-editorial-app.md) |
 | **03 · Kinetic Brand Pop** | Bold solid-color stage switches, punchy 3-beat text stamps, 3D tilted card wall (Pinterest-style); ideal for high-energy brand launches and feature walls. | [03-kinetic-brand-pop.md](./references/styles/03-kinetic-brand-pop.md) |
 | **04 · Dark Studio Hardware** | Obsidian studio sweep, precision metallic/glass rim lighting, dominant 3D device hero (`57%–60%` height) & portal UI dive; ideal for hardware/mobile demos. | [04-dark-studio-hardware.md](./references/styles/04-dark-studio-hardware.md) |
 | **05 · Bold Typography Story** | Expressive scale-contrasted statements, wipe-stamp reveals, rhythmic impact shakes & silent drops; ideal for manifesto hooks, copy-heavy stories, fast campaigns. | [05-bold-typography-story.md](./references/styles/05-bold-typography-story.md) |
 | **06 · Custom Reference Adapter** | Mandatory workflow when the owner uploads screenshots, moodboards, or reference videos — extracts palette, pacing ratio, and camera language without cloning copy. | [06-custom-reference-adapter.md](./references/styles/06-custom-reference-adapter.md) |
 | **07 · Bright Interactive UI Morph** | Daylight brand-mist canvas, pop-out cutout products over giant type, 3D tilt-to-flat catalog sweep, continuity card-to-tracker morph & perimeter border progress (Starbucks/Corpius.ae-style); works in 16:9 & 9:16. | [07-bright-interactive-ui-morph.md](./references/styles/07-bright-interactive-ui-morph.md) |
+| **08 · Apple Minimal Elastic** | Crisp monochrome off-white/black flips, architectural grid lines, 1 vibrant accent/beat, elastic morphing capsules, split-sentence prompt inserts, bouncy icons & 5-card widget fans (`Bart_VFX`/`dnyxstudios`-style). | [08-apple-minimal-elastic.md](./references/styles/08-apple-minimal-elastic.md) |
+| **09 · Living Product Walkthrough** | Clean daylight canvas, optional bottom chapter rail, drag-drop photo into breathing glowing input, macro sidebar/table zoom, morphing status pills & live voice orb (`Sleeko`/`HusniXD`-style). | [09-living-product-walkthrough.md](./references/styles/09-living-product-walkthrough.md) |
+| **10 · Dark Ember Editorial** | Pure obsidian ground with slow-breathing crimson-terracotta glow waves, luminous serif display type, macro dropdown UI focus & rapid 3-beat verb swap (`Claude`-style). | [10-dark-ember-editorial.md](./references/styles/10-dark-ember-editorial.md) |
 
 ### Production Modules (`references/modules/` & `references/checklists/`)
-- [pacing-choreography.md](./references/modules/pacing-choreography.md) — Slow-Fast-Slow timing ratios, reading hold budgets, act segmentation.
-- [camera-and-3d.md](./references/modules/camera-and-3d.md) — Interactive camera keyframes, macro typing rail (`2.4x`), Three.js 3D sizing, Z-clearance, `<CameraMotionBlur>` rules, CTA pixel-lock.
-- [sound-asmr-engine.md](./references/modules/sound-asmr-engine.md) — Legal royalty-free ASMR SFX sourcing, 0ms onset trim, `lowpass` warmth shaping, Silent Drops, `-ac 2` stereo metering.
+- [storyboard-segments.md](./references/modules/storyboard-segments.md) — Gate 1 mandatory Q&A + Gate 2 8-segment storyboard builder & 2–6 word visual-explain budget.
+- [living-ui-physics.md](./references/modules/living-ui-physics.md) — Two-layer motion rules: idle breathing UI + elastic bounce, squash-stretch, drag-drop glow, card fans & capsule morphs.
+- [visual-assets-engine.md](./references/modules/visual-assets-engine.md) — Strict `Code -> Three.js -> Optional PNG/WebP` hierarchy, 4-step sourcing fallback, anti-lazy-PNG & copyright rules.
+- [pacing-choreography.md](./references/modules/pacing-choreography.md) — Slow-Fast-Slow timing ratios, 10 measured reference benchmarks, reading hold budgets.
+- [camera-and-3d.md](./references/modules/camera-and-3d.md) — Eye-guiding camera keyframes, macro UI focus, `2.4x` typing rail, Three.js 3D rules, CTA pixel-lock, continuity morphs.
+- [sound-asmr-engine.md](./references/modules/sound-asmr-engine.md) — Royalty-free ASMR SFX sourcing, 0ms onset trim, `lowpass` warmth shaping, Silent Drops, `-ac 2` stereo metering.
 - [ui-antislop-gate.md](./references/modules/ui-antislop-gate.md) — Banned AI tropes, HTML mockup verification workflow, Headless Chrome localhost/temp-profile rules.
 - [export-safezones.md](./references/modules/export-safezones.md) — `Y = 245..1655px` universal IG Story/Reels/TikTok map, 2-pass `< 10 MB` anti-banding encoding, WA Document transfer note.
 - [pre-render-qc.md](./references/checklists/pre-render-qc.md) — Mandatory go/no-go verification gate before full rendering and delivery.
 
 ### Reusable Templates & Tools (`templates/` & `scripts/`)
-- [motion_primitives.ts](./templates/motion_primitives.ts) — Ready-to-copy 60 FPS deterministic easing, camera rail, recoil, impact shake, rack-focus, and cursor arc helpers.
+- [motion_primitives.ts](./templates/motion_primitives.ts) — Ready-to-copy 60 FPS deterministic easing, camera rig, recoil, shake, rack-focus, cursor arc, plus Living UI breathing/bounce/morph/fan/split-insert helpers.
 - [mix_asmr_template.py](./templates/mix_asmr_template.py) — Parameterized Python ASMR + BGM mixing & R128 mastering pipeline.
 - [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py) — CLI analyzer measuring calm-vs-motion pacing ratio, `ffprobe` streams, and stereo audio peaks/crest/dynamics.
 - [export_wa_igstory_10mb.py](./scripts/export_wa_igstory_10mb.py) — CLI 2-pass encoder producing razor-sharp `< 10 MB` dark-safe MP4s with preview still extraction.

@@ -47,3 +47,12 @@ Standard `1.15x` zoom makes typing scenes feel distant. For true tactile typing 
    - Dismiss unselected sibling cards cleanly while keeping the clicked product card alive on screen across the act transition, sliding it into the left slot of the next status/tracking component.
 4. **Perimeter Border Progress:**
    - Animate an `SVG` `<rect>` `stroke-dashoffset` (or conic border mask) from `0% -> 100%` around the rounded outer card perimeter in sync with sequential live state text rather than adding redundant inner progress bars.
+
+## 6. Eye-Guiding Macro UI Focus & Contrast Flip Patterns (Styles 08–10)
+
+1. **Macro Control & Sidebar Zoom:**
+   - Zoom cleanly (`1.9x–2.4x`) directly onto micro UI controls — such as an open model dropdown (`Sonnet -> Opus`) or a left sidebar navigation item (`New chat`) on hover — before pulling back to reveal the transformed workspace.
+2. **Curved Pointer Sweep Between Chained Micro-Actions:**
+   - Chain 2 adjacent interactions in one continuous shot (e.g., cursor taps `Like` heart -> camera pans laterally following cursor -> cursor taps `Save` pill triggering color/label toggle and spring rebound).
+3. **Extreme Monochrome/Brand Stage Flips (`90x–118x` Burst):**
+   - Snap cleanly across opposite luminance stages (`off-white <-> obsidian` or `white <-> crimson`) using crisp `0.25–0.40s` transitions that immediately settle into calm `1.8s+` holds so visual shock never hurts readability.
