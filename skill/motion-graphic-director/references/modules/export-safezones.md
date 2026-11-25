@@ -15,7 +15,16 @@ Because IG Story reserves heavy header/footer bars even without social side butt
 - **Approach-Fade Safety Rule:** Any floating HUD caption above (`top: 245`) or below (`bottom: 268`) an interactive 3D phone MUST smoothly fade out (`topApproachFade` + `bottomApproachFade`) before the camera leans into the OLED button so HUD overlays never overlap zoomed 3D device text!
 - **Platform Duration & Master Caps:** Keep total runtime **`<= 59.0s`** (fits single IG Story card `< 60s`) and **`< 179s`** (YouTube Shorts limit); master bitrate sized well under TikTok's **`72 MB`** hard compression trigger.
 
-## 2. Dual-Output Encoding Strategy
+## 2. Portrait `9:16` vs Landscape `16:9` Reflow Law (`C-4`)
+
+**Portrait `9:16` is a distinct layout, NOT a squeezed-down `16:9` composition.** Never port horizontal desktop choreography directly onto a `1080px`-wide mobile canvas without redesigning axis, spacing, and camera pullback:
+
+- **Kinetic Axis Reflow:** Wide horizontal splits (`splitInsertGap` separating words left/right by `±400px`) collide with `800–900px` prompt bars on a `1080px` vertical screen. Reflow portrait split inserts into **vertical or vertical-diagonal splits** (`translateY` separation) so both word halves clear the inserted bar cleanly.
+- **Zero Horizontal Edge Clipping:** Audit zoomed macro frames (`2.3x–2.45x` camera pans) on rendered PNG stills so oversized display text never clips past `X = 0` or `X = 1080`; maintain **`X = 72 .. 1008 px`** breathing margin on key readable type.
+- **3D Pull-Back & Tall Geometry Clearance:** Tall 3D props (e.g., robot antennas, vertical stands, phone headers) eat into `9:16` vertical safe bounds much faster than `16:9`. Pull camera distance back cleanly (`~3.1–3.4m` for tabletop characters) or adjust camera `Y` offset so props never collide with top/bottom display lines.
+- **Mobile-Calibrated Padding & Bars:** Bottom bars, pills, or step indicators must stay strictly below focal subjects or fade out cleanly (`Approach-Fade`) — never crowd or clip behind 3D geometry or lower copy.
+
+## 3. Dual-Output Encoding Strategy
 
 Always deliver **2 verified MP4 files** for distribution:
 
@@ -25,4 +34,4 @@ Always deliver **2 verified MP4 files** for distribution:
    - Re-encoded cleanly via [scripts/export_wa_igstory_10mb.py](../../scripts/export_wa_igstory_10mb.py) at **30 FPS (`1080x1920`)** using **2-pass `libx264 -preset slow`** with:
      `-x264-params "aq-mode=3:aq-strength=0.9:deblock=-1,-1"`
    - **Why 30 FPS + `aq-mode=3`?** Splitting ~9 MB across 30 frames/sec instead of 60 gives each frame **twice the bits**, while `aq-mode=3` automatically shifts extra bits to dark cobalt/midnight areas — preventing ugly blocky compression or color banding while staying strictly **`< 10,000,000` bytes** (`AAC 128k` stereo, `+faststart`).
-   - **WhatsApp Transfer Advice:** Always remind Bima to send `.mp4` files from PC to phone via WhatsApp **Document** (never Gallery/Photo compression) before uploading to IG Story so phone-side quality matches pixel-for-pixel.
+   - **WhatsApp Transfer Advice:** Always remind the owner to send `.mp4` files from PC to phone via WhatsApp **Document** (never Gallery/Photo compression) before uploading to IG Story so phone-side quality matches pixel-for-pixel.

@@ -13,8 +13,9 @@ Folder ini menyimpan hasil video jadi, catatan riset pembelajaran, dan skill res
   - [riset-motion-graphic-ta-mentor.md](./riset-skill/riset-motion-graphic-ta-mentor.md) — perjalanan revisi **v1 → v2 → v3 → v4**, hasil ukur acuan **Gojek** & **Pinterest**, perbaikan bug nyata, dan patokan angka hasilnya.
   - [riset-acuan-starbucks-corpius.md](./riset-skill/riset-acuan-starbucks-corpius.md) — hasil bedah acuan ke-3 (**Starbucks / Corpius.ae**) yang melahirkan Gaya 07 (antarmuka terang interaktif & kartu sulap berkelanjutan).
   - [riset-7-acuan-visual-living-ui.md](./riset-skill/riset-7-acuan-visual-living-ui.md) — hasil ukur dan bedah **7 video acuan lanjutan** yang melahirkan rekonstruksi alur kerja 8 gerbang, aturan antarmuka bernapas & membal, hierarki aset, serta Gaya 08–10.
+  - [riset-integrasi-antislop.md](./riset-skill/riset-integrasi-antislop.md) — evaluasi suite `antislop` dan integrasi sistem mutu 3 lapisan, takaran daya hidup, saringan naskah, tata letak ulang `9:16`, alat uji kontras `check_contrast.py`, serta gerbang kelulusan 4 blok.
 - **`skill/motion-graphic-director/`**
-  Salinan kerja dari skill modular **Motion Graphic Director** dengan **alur kerja 8 gerbang** (mulai dari tanya-jawab ruang lingkup, papan cerita per segmen, hierarki aset Kode/`Three.js`/opsi `PNG`, antarmuka bernapas & membal, hingga **10 berkas panduan gaya**). Skill ini dipasangkan pula secara global ke:
+  Salinan kerja dari skill modular **Motion Graphic Director** dengan **alur kerja 8 gerbang** (mulai dari tanya-jawab ruang lingkup, papan cerita per segmen, gerbang anti-slop 3 lapisan + pengukur kontras `check_contrast.py`, hierarki aset Kode/`Three.js`/opsi `PNG`, antarmuka bernapas & membal, tata letak ulang layar tegak `9:16`, hingga **10 berkas panduan gaya**). Skill ini dipasangkan pula secara global ke:
   `~/.gemini/config/skills/motion-graphic-director/`
   sehingga otomatis terbaca saat kamu membuat video baru di proyek mana pun.
 

@@ -4,10 +4,15 @@ Do NOT declare a render complete until every single gate below is empirically ve
 
 ## Phase A: Before Full 60 FPS Video Render
 - [ ] **Scope Q&A & Storyboard Approved:** Gate 1 Q&A completed and Gate 2 segmented storyboard approved by owner (`2–6` words/beat visual-explain budget honored).
-- [ ] **UI Anti-Slop Check:** `DESIGN.md` updated, zero glowing traffic-light dots, zero nested cards inside glass, zero fake scores/sparkle glyphs, owner approved 3 HTML->PNG mockups.
+- [ ] **Design Lock & Liveliness (`DESIGN.md`):** Includes 1-line **Design Read**, **`ENERGY / RHYTHM / MOTION` (1–3)** dials, `R-29` palette cap (`<= 2–3` inks/surfaces + `1` accent), and `R-31` 1-line rationales for every major design choice.
+- [ ] **Computed WCAG AA Contrast Verified (`R-25`):** `python scripts/check_contrast.py` exits `0` across all text (`>= 4.5:1`), large display type (`>= 3.0:1`), and non-text UI boundaries (`>= 3.0:1`) tested against worst-case background pixels.
+- [ ] **Dose Caps & Anti-Card-Cage (`R-10..14`):** Max `1–2` frosted glass surfaces, max `1–2` focal glows, zero nested cards inside glass, zero traffic-light dots/sparkle glyphs, and **zero card cages around 3D hero models**.
+- [ ] **Zero Dead UI Controls (`R-26 / C-2`):** Every visible button, tab, dropdown, or chapter rail is clicked/used during the video — zero unclicked decorative chrome remains.
+- [ ] **Act Rhythm, Mockup Approval & Swap-Logo Test (`R-05 / R-20`):** Owner explicitly approved 3 compositionally distinct Gate 3 PNG mockups, and the style still passes the Swap-Logo distinctiveness test.
 - [ ] **Living UI Check:** Calm holds feature subtle idle breathing (float/glow/pulse), while interactive beats use elastic spring bounce or continuity morph — zero frozen-slide frames.
 - [ ] **Asset Hierarchy & Quality Check:** All UI/buttons/charts built in code and 3D devices in `Three.js` (zero lazy `PNG` UI shortcuts); every optional `PNG`/`WebP` visually inspected via `read_file` (sharp, aspect-locked, zero watermarks, clean cutout edges).
-- [ ] **Copy & Spelling Check:** Proofread every rendered headline, sublabel, and CTA character-by-character directly on rendered PNG stills (catches live typos like `"favortie"` before full render).
+- [ ] **Copy & Anti-Slop Spelling Check:** Copy completed `Draft -> Audit -> Final` (zero em dashes `—`, zero AI vocabulary/negative parallelism/staccato drama/generic CTAs/headline emojis) AND proofread character-by-character directly on rendered PNG stills.
+- [ ] **Portrait `9:16` Reflow Check (`C-4`):** Split-insert transitions use vertical/diagonal reflow when wide prompt bars appear, macro pans stay free of horizontal edge clipping (`X = 72..1008px`), and tall 3D props clear top/bottom copy.
 - [ ] **Typecheck Clean:** `npx tsc --noEmit` exits `0`.
 - [ ] **Backdrop Bleed Guard:** Extreme camera pans/zooms clamp `AmbientBackdrop` parallax (`<= ±34px`) — inspect macro pan stills to verify zero border seams.
 - [ ] **IG Story Safe Zones Verified visually (`read_file`):**
@@ -32,3 +37,10 @@ Do NOT declare a render complete until every single gate below is empirically ve
 - [ ] WA / IG Story MP4 (`30 FPS`): strictly **`< 10,000,000` bytes**, `1080x1920`, `30/1` fps, stereo `peak <= 0.96`.
 - [ ] Visually inspect 2 stills extracted from `< 10 MB` MP4 (`ss=2.2` & `ss=13.0`) via `read_file` to confirm crisp typography and band-free dark cobalt gradients.
 - [ ] Both files copied with exact verified byte parity to the target delivery folders.
+
+## Phase D: 4-Block Evidence-Backed Delivery Gate Report
+Before delivering final MP4s to the owner, confirm all 4 summary blocks pass with observed command output or inspected PNG filenames (see [ui-antislop-gate.md](../modules/ui-antislop-gate.md)):
+- [ ] **Block 1 (Hard Gates & Contrast):** `0` em dashes, `0` fabricated claims, `0` dead UI controls, `check_contrast.py` PASS output logged, stills visually checked.
+- [ ] **Block 2 (Purpose-Gate & Dose Caps):** Glass `<= 2`, glow `<= 2`, purposeful shadows, `0` card cages around 3D heroes.
+- [ ] **Block 3 (Liveliness & Rhythm):** Design Read + `ENERGY/RHYTHM/MOTION` dials honored, 5 liveliness levers active, consecutive acts visually varied.
+- [ ] **Block 4 (Craftsmanship, Copy & Reflow):** `C-1..C-5` satisfied, Swap-Logo Test (`R-20`) passed, `R-29` palette cap (`<= 3+1`), `R-31` rationales complete, `9:16` reflow verified clean.

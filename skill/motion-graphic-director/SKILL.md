@@ -52,8 +52,8 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 ### Gate 3: Style Selection, Tier-3 Asset Prep & 3 Anti-Slop Mockups (Owner Approval Required)
 1. Load the chosen style playbook(s) from `references/styles/` and read [ui-antislop-gate.md](./references/modules/ui-antislop-gate.md).
 2. If Tier 3 `PNG`/`WebP` assets are approved in Gate 2, follow the 4-step sourcing fallback (Owner assets -> AI generate -> Royalty-free Unsplash/Pexels/Wikimedia/Pixabay without anti-bot bypass; Pinterest moodboard-only -> Honest request) and inspect every asset via `read_file`.
-3. Lock typography, palette, surface budget, and authentic copy in `DESIGN.md`.
-4. Render **3 static UI mockups** at target aspect ratio (ephemeral `127.0.0.1` server + Chrome `--user-data-dir`), verify `>= 4.5:1` WCAG AA contrast, inspect via `read_file`, and **obtain explicit owner approval** before Remotion coding.
+3. Lock the 1-line **Design Read**, **`ENERGY / RHYTHM / MOTION` (1–3)** dials, palette/surface dose caps (`R-29`, `R-31` 1-line rationales), and `Draft -> Audit -> Final` anti-slop copy in `DESIGN.md`.
+4. Render **3 compositionally distinct static mockups** (`R-05`, zero card cages around 3D heroes `R-14`, zero dead UI controls `R-26`) at target aspect ratio (ephemeral `127.0.0.1` server + Chrome `--user-data-dir`), verify exact unrounded contrast via [check_contrast.py](./scripts/check_contrast.py) (`>= 4.5:1` normal text / `>= 3.0:1` large & UI boundaries), inspect all 3 PNGs via `read_file`, and **obtain explicit owner approval** before Remotion coding.
 
 ### Gate 4: Two-Layer Choreography — Eye-Guiding Camera + Living UI
 1. Read [pacing-choreography.md](./references/modules/pacing-choreography.md), [camera-and-3d.md](./references/modules/camera-and-3d.md), and [living-ui-physics.md](./references/modules/living-ui-physics.md).
@@ -67,15 +67,15 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 2. Sync tactile ASMR cues (`Topre`/`Gateron` typing, soft glassy clicks, pentatonic drops, trimmed air whooshes, warm low-passed sub-thumps) to every bounce, drag-drop, and transition.
 3. Carve `2` brief **Silent Drops (`230–240 ms`)** before major turns and verify stereo (`-ac 2`) mastering: `peak <= 0.92`, `crest_db >= 14.0`, `dyn_p95_p10_db >= 12.0`.
 
-### Gate 6: Safe Zones, Copy Spelling, Asset QC & Visual Still Inspection
-1. Read [export-safezones.md](./references/modules/export-safezones.md) and run every item in [pre-render-qc.md](./references/checklists/pre-render-qc.md).
-2. For vertical `9:16`, keep critical text/pills inside **`Y = 245..1655px`** and fade floating HUDs before 3D lean-in zooms.
+### Gate 6: Safe Zones, `9:16` Reflow, Copy Spelling & Visual Still Inspection
+1. Read [export-safezones.md](./references/modules/export-safezones.md) and run Phases A–B in [pre-render-qc.md](./references/checklists/pre-render-qc.md).
+2. For vertical `9:16`, keep critical text/pills inside **`Y = 245..1655px`** (`X = 72..1008px`), reflow horizontal splits into vertical/diagonal moves when prompt bars are wide, pull 3D geometry clear of captions, and fade floating HUDs before 3D lean-in zooms.
 3. Render keyframe stills (`npx remotion still`), proofread **all copy character-by-character**, verify asset sharpness/proportions, pixel-lock 2D cursor taps to 3D CTA centers, and inspect every still via `read_file`.
 
-### Gate 7: Dual-Output Rendering & Final Verification
+### Gate 7: Dual-Output Rendering & 4-Block Delivery Gate Verification
 1. Render **`60 FPS`** master (`--crf=18 --audio-bitrate=192k`).
 2. When targeting mobile sharing/IG Story in `9:16`, also encode **`< 10 MB`** `30 FPS` version via [export_wa_igstory_10mb.py](./scripts/export_wa_igstory_10mb.py) (`aq-mode=3` dark-gradient protection).
-3. Verify output MP4(s) with [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py) and inspect extracted stills before delivery.
+3. Verify output MP4(s) with [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py), inspect extracted stills, and complete the **4-Block Evidence-Backed Delivery Gate** ([ui-antislop-gate.md](./references/modules/ui-antislop-gate.md) & [pre-render-qc.md](./references/checklists/pre-render-qc.md)) before delivery.
 
 ---
 
@@ -102,12 +102,13 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 - [pacing-choreography.md](./references/modules/pacing-choreography.md) — Slow-Fast-Slow timing ratios, 10 measured reference benchmarks, reading hold budgets.
 - [camera-and-3d.md](./references/modules/camera-and-3d.md) — Eye-guiding camera keyframes, macro UI focus, `2.4x` typing rail, Three.js 3D rules, CTA pixel-lock, continuity morphs.
 - [sound-asmr-engine.md](./references/modules/sound-asmr-engine.md) — Royalty-free ASMR SFX sourcing, 0ms onset trim, `lowpass` warmth shaping, Silent Drops, `-ac 2` stereo metering.
-- [ui-antislop-gate.md](./references/modules/ui-antislop-gate.md) — Banned AI tropes, HTML mockup verification workflow, Headless Chrome localhost/temp-profile rules.
-- [export-safezones.md](./references/modules/export-safezones.md) — `Y = 245..1655px` universal IG Story/Reels/TikTok map, 2-pass `< 10 MB` anti-banding encoding, WA Document transfer note.
-- [pre-render-qc.md](./references/checklists/pre-render-qc.md) — Mandatory go/no-go verification gate before full rendering and delivery.
+- [ui-antislop-gate.md](./references/modules/ui-antislop-gate.md) — 3-tier anti-slop rules & dose caps, Liveliness 3 Dials + 5 Levers, anti-card-cage 3D rule, copy filter, 4-Block Delivery Gate, and Windows Headless Chrome capture rules.
+- [export-safezones.md](./references/modules/export-safezones.md) — `Y = 245..1655px` universal IG Story/Reels/TikTok map, `9:16` vs `16:9` reflow rules (`C-4`), 2-pass `< 10 MB` anti-banding encoding, WA Document transfer note.
+- [pre-render-qc.md](./references/checklists/pre-render-qc.md) — Mandatory Phases A–D go/no-go verification checklist and 4-Block Delivery Gate before delivery.
 
 ### Reusable Templates & Tools (`templates/` & `scripts/`)
 - [motion_primitives.ts](./templates/motion_primitives.ts) — Ready-to-copy 60 FPS deterministic easing, camera rig, recoil, shake, rack-focus, cursor arc, plus Living UI breathing/bounce/morph/fan/split-insert helpers.
 - [mix_asmr_template.py](./templates/mix_asmr_template.py) — Parameterized Python ASMR + BGM mixing & R128 mastering pipeline.
+- [check_contrast.py](./scripts/check_contrast.py) — Standalone exact-unrounded WCAG 2.x contrast checker (`4.5:1` text, `3.0:1` large display & UI boundaries, batch + `--selftest`).
 - [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py) — CLI analyzer measuring calm-vs-motion pacing ratio, `ffprobe` streams, and stereo audio peaks/crest/dynamics.
 - [export_wa_igstory_10mb.py](./scripts/export_wa_igstory_10mb.py) — CLI 2-pass encoder producing razor-sharp `< 10 MB` dark-safe MP4s with preview still extraction.
