@@ -1,0 +1,28 @@
+# Module: Universal Vertical Safe Zones & Dual-Output Export (`< 10 MB` + `60 FPS`)
+
+One master composition must play cleanly across **Instagram Story**, **Instagram Reels**, **TikTok**, and **YouTube Shorts**, while providing a crisp lightweight version under **10 MB** so WhatsApp transfers never stall or blur dark gradients.
+
+## 1. Universal Safe-Zone Coordinate Map (`1080 x 1920`)
+
+Because IG Story reserves heavy header/footer bars even without social side buttons:
+
+| Screen Zone | Pixel Y Range (`1920px` height) | Platform Overlay Risk | Composition Rule |
+|---|---|---|---|
+| **Top Header** | `Y = 0 .. 245 px` | IG Story profile avatar, username, mute/close (`0..250px`), Shorts search bar | Keep clean ambient background ONLY. Start top wordmarks & titles at **`top >= 245px`** (`255px` preferred). |
+| **Golden Safe Canvas** | **`Y = 245 .. 1655 px`** (`X = 72 .. 1008 px`) | Minimal obstruction (keep key copy/buttons left of `x = 880` for Reels/TikTok side icons when possible) | Place ALL headlines, liquid glass cards, macro prompt bars, 3D phone hero, and bottom pills strictly inside **`Y = 245..1655px`**. |
+| **Bottom Reply/CTA Bar** | `Y = 1655 .. 1920 px` | IG Story `"Send message"` input (`~250px`), Reels/TikTok captions & usernames | Place lowest captions/pills at **`bottom >= 268px`** (`bottom: 268` to `290`, ending around `Y <= 1652px`). |
+
+- **Approach-Fade Safety Rule:** Any floating HUD caption above (`top: 245`) or below (`bottom: 268`) an interactive 3D phone MUST smoothly fade out (`topApproachFade` + `bottomApproachFade`) before the camera leans into the OLED button so HUD overlays never overlap zoomed 3D device text!
+- **Platform Duration & Master Caps:** Keep total runtime **`<= 59.0s`** (fits single IG Story card `< 60s`) and **`< 179s`** (YouTube Shorts limit); master bitrate sized well under TikTok's **`72 MB`** hard compression trigger.
+
+## 2. Dual-Output Encoding Strategy
+
+Always deliver **2 verified MP4 files** for distribution:
+
+1. **Master Full Quality (`60 FPS` · `~25–32 MB`):**
+   - Rendered natively from Remotion (`--crf=18 --audio-bitrate=192k`) for crisp Reels, TikTok, and YouTube Shorts playback.
+2. **WhatsApp & IG Story Lightweight (`< 10 MB` · `30 FPS` · `~8.5–9.3 MB`):**
+   - Re-encoded cleanly via [scripts/export_wa_igstory_10mb.py](../../scripts/export_wa_igstory_10mb.py) at **30 FPS (`1080x1920`)** using **2-pass `libx264 -preset slow`** with:
+     `-x264-params "aq-mode=3:aq-strength=0.9:deblock=-1,-1"`
+   - **Why 30 FPS + `aq-mode=3`?** Splitting ~9 MB across 30 frames/sec instead of 60 gives each frame **twice the bits**, while `aq-mode=3` automatically shifts extra bits to dark cobalt/midnight areas — preventing ugly blocky compression or color banding while staying strictly **`< 10,000,000` bytes** (`AAC 128k` stereo, `+faststart`).
+   - **WhatsApp Transfer Advice:** Always remind Bima to send `.mp4` files from PC to phone via WhatsApp **Document** (never Gallery/Photo compression) before uploading to IG Story so phone-side quality matches pixel-for-pixel.
