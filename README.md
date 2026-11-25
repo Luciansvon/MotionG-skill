@@ -2,6 +2,12 @@
 
 Folder ini menyimpan hasil video jadi, catatan riset pembelajaran, dan skill resmi pembuat video *motion graphic* vertikal yang dirumuskan langsung dari eksperimen proyek **TA Modular Mentor** beserta studi dua video acuan (**Gojek** & **Pinterest**).
 
+## Contoh Hasil Video
+
+Cuplikan video promo vertikal `9:16` berdurasi **36 detik** (model robot 3D `Three.js` dengan animasi `Idle`, `Walk`, dan `Wave`, tata letak bebas kotak kartu `antislop`, serta suara ASMR) yang diproduksi penuh menggunakan panduan `motion-graphic-director`:
+
+https://github.com/user-attachments/assets/66298f51-0c47-4619-8bc5-f3afdd2fa9dd
+
 ## Susunan Folder
 
 - **`videos/`**
