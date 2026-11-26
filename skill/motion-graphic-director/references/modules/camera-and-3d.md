@@ -56,3 +56,12 @@ Standard `1.15x` zoom makes typing scenes feel distant. For true tactile typing 
    - Chain 2 adjacent interactions in one continuous shot (e.g., cursor taps `Like` heart -> camera pans laterally following cursor -> cursor taps `Save` pill triggering color/label toggle and spring rebound).
 3. **Extreme Monochrome/Brand Stage Flips (`90x–118x` Burst):**
    - Snap cleanly across opposite luminance stages (`off-white <-> obsidian` or `white <-> crimson`) using crisp `0.25–0.40s` transitions that immediately settle into calm `1.8s+` holds so visual shock never hurts readability.
+
+## 7. Cursor-Tethered Follow, Optic Focus Bloom & Halftone Transitions (Style 11 & V1/V3/V6)
+
+1. **Cursor-Tethered Macro UI Follow (`tetheredCameraFollow`):**
+   - Instead of showing an entire SaaS settings screen at `1.0x` where form labels turn unreadable, lock zoom at **`1.8x–2.2x`** and feed cursor `(x, y)` into `tetheredCameraFollow(...)` so the camera glides continuously with the pointer across `3–4` form steps (name input -> type dropdown -> toggle -> save) in one uninterrupted shot. Always clamp backdrop parallax (`<= ±34px`) to prevent edge leaks.
+2. **Optic Rack-Focus Bloom Reveal (`V1 Vercel`):**
+   - On dark monochrome beats, transition hero UI cards and pill CTAs (`Visit ↗`) from soft optic defocus (`blur(12px) -> blur(0px)`) paired with restrained rim bloom (`max 1–2` glowing targets per frame) so depth reads like a real cinema lens.
+3. **Halftone Dot-Matrix Transformation (`halftoneWaveCell` — `V6 Supabase`):**
+   - When morphing a natural-language prompt into live SQL/code or data tables, drive a radial grid of glowing dots via `halftoneWaveCell(col, row, cols, rows, frame, triggerFrame)` so the sweeping dot wave masks the underlying swap cleanly without an abrupt hard cut.

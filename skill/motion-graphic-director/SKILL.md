@@ -17,7 +17,7 @@ Use this skill to direct, audit, and produce vertical `9:16` and landscape `16:9
 ## Core Multi-Style & Visual-Explain Rules
 
 - **Custom Reference First:** When the owner supplies images or videos as creative direction, ALWAYS load [06-custom-reference-adapter.md](./references/styles/06-custom-reference-adapter.md) and measure reference pacing with [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py).
-- **9 Built-In Art Directions (`01–05`, `07–10`):** When no custom reference is given, choose or intentionally blend across acts (mix styles only when dramatic contrast strengthens the story).
+- **10 Built-In Art Directions (`01–05`, `07–11`):** When no custom reference is given, choose or intentionally blend across acts (mix styles only when dramatic contrast strengthens the story).
 - **Visual-Explain First (`2–6 words/beat`):** Show actions visually (drag-and-drop, dropdown pick, morphing pills, fan spreads) instead of text walls.
 - **Two-Layer Motion:** Pair eye-guiding camera moves with **Living UI** (idle breathing during calm holds + elastic squash-stretch bounce/morph on reactions).
 - **Strict Medium Hierarchy:** Build UI in **Code**, 3D devices in **`Three.js`**, and use **`PNG`/`WebP` ONLY when genuinely needed** for complex photographic/organic subjects.
@@ -39,7 +39,7 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 1. Product & single core takeaway.
 2. Screen format & destination (`9:16`, `16:9`, or dual).
 3. Runtime tier (`10–15s` micro, `18–25s` punchy, `30–45s` walkthrough).
-4. Visual direction (custom reference vs Styles `01–05`, `07–10`).
+4. Visual direction (custom reference vs Styles `01–05`, `07–11`).
 5. Audio direction (non-VO + ASMR default vs `3–6` words/beat micro-VO; BGM choice).
 6. Existing authentic brand logos, screenshots, or product photos.
 
@@ -61,8 +61,8 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
    - Maintain `55%–83%` calm readable holds (`1.8–2.2s` per key line) contrasted against crisp `0.35–0.85s` transitions (`11x–118x` burst contrast).
    - **Visible Bounce & Staggered Idle Life:** Drive entrances with full `springBounce` / `elasticPop` (`12%–22%` overshoot; never dilute via `lerp(0.86, 1, pop)`), drops with `squashStretch` + `cameraRecoil`, and calm holds with staggered `ambientBreath` / `pulseGlow`.
    - **Zero Flat Headline Fades:** Animate key copy word-by-word via `maskedWordRise` + `kineticExit`, accent keywords via `shimmerSweep` / `underlineDraw`, and real stats/progress via `rollingNumber`.
-   - **Zero 1-Frame UI Teleports:** Pair curved pointer sweeps (`evalCursorPos`) with `cursorPressState` + `clickRipple`, smooth `slotExpandSpring` drops, liquid `slidingPillPose` + `tactileTilt` tab clicks, `morphBox`, `cardFanPose`, `splitInsertGap`, and restrained completion `burstParticlePose`.
-   - Use `2.35x–2.45x` macro zooms with clamped backdrop parallax (`<= ±34px`), mount `<ThreeCanvas>` **OUTSIDE** `<CameraMotionBlur>`, never pass `frame` as a prop inside `<CameraMotionBlur>`, keep hero 3D phones around `57%–60%` height (`max_z < -0.5` for orbital rings).
+   - **Zero 1-Frame UI Teleports:** Pair curved pointer sweeps (`evalCursorPos`) with `cursorPressState` + `clickRipple`, smooth `slotExpandSpring` drops, liquid `slidingPillPose` + `tactileTilt` tab clicks, `morphBox`, `iconToBarMorph`, `moodCardBlend`, `mascotLetterHop`, `evalMultiCursors`, `inspectorBoxPose`, `cardFanPose`, `splitInsertGap`, and restrained completion `burstParticlePose`.
+   - Use `2.35x–2.45x` macro zooms or `tetheredCameraFollow` pans with clamped backdrop parallax (`<= ±34px`) and optional `halftoneWaveCell` transitions, mount `<ThreeCanvas>` **OUTSIDE** `<CameraMotionBlur>`, never pass `frame` as a prop inside `<CameraMotionBlur>`, keep hero 3D phones around `57%–60%` height (`max_z < -0.5` for orbital rings).
 
 ### Gate 5: ASMR Tactile Sound Design & Audio Mastering
 1. Read [sound-asmr-engine.md](./references/modules/sound-asmr-engine.md) and adapt [mix_asmr_template.py](./templates/mix_asmr_template.py).
@@ -96,6 +96,7 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 | **08 · Apple Minimal Elastic** | Crisp monochrome off-white/black flips, architectural grid lines, 1 vibrant accent/beat, elastic morphing capsules, split-sentence prompt inserts, bouncy icons & 5-card widget fans (`Bart_VFX`/`dnyxstudios`-style). | [08-apple-minimal-elastic.md](./references/styles/08-apple-minimal-elastic.md) |
 | **09 · Living Product Walkthrough** | Clean daylight canvas, optional bottom chapter rail, drag-drop photo into breathing glowing input, macro sidebar/table zoom, morphing status pills & live voice orb (`Sleeko`/`HusniXD`-style). | [09-living-product-walkthrough.md](./references/styles/09-living-product-walkthrough.md) |
 | **10 · Dark Ember Editorial** | Pure obsidian ground with slow-breathing crimson-terracotta glow waves, luminous serif display type, macro dropdown UI focus & rapid 3-beat verb swap (`Claude`-style). | [10-dark-ember-editorial.md](./references/styles/10-dark-ember-editorial.md) |
+| **11 · Dark Tech Beam & Halftone** | Charcoal-obsidian canvas with diagonal emerald/brand light beams, optic rack-focus bloom, prompt-to-code halftone dot waves, cursor-tethered form follow & multi-cursor named collaboration (`Supabase`/`Vercel`-style). | [11-dark-tech-beam-halftone.md](./references/styles/11-dark-tech-beam-halftone.md) |
 
 ### Production Modules (`references/modules/` & `references/checklists/`)
 - [storyboard-segments.md](./references/modules/storyboard-segments.md) — Gate 1 mandatory Q&A + Gate 2 8-segment storyboard builder & 2–6 word visual-explain budget.
@@ -109,7 +110,7 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 - [pre-render-qc.md](./references/checklists/pre-render-qc.md) — Mandatory Phases A–D go/no-go verification checklist and 4-Block Delivery Gate before delivery.
 
 ### Reusable Templates & Tools (`templates/` & `scripts/`)
-- [motion_primitives.ts](./templates/motion_primitives.ts) — Ready-to-copy 60 FPS deterministic easing, camera rig, recoil, shake, rack-focus, cursor arc + pinch/ripples, calibrated springs (`springBounce`/`elasticPop`/`squashStretch`), kinetic typography (`maskedWordRise`/`rollingNumber`/`shimmerSweep`), and liquid UI helpers (`slidingPillPose`/`tactileTilt`/`slotExpandSpring`).
+- [motion_primitives.ts](./templates/motion_primitives.ts) — Ready-to-copy 60 FPS deterministic easing, camera rig, `tetheredCameraFollow`, recoil, shake, rack-focus, cursor arc + `evalMultiCursors` + pinch/ripples, calibrated springs (`springBounce`/`elasticPop`/`squashStretch`), kinetic typography (`maskedWordRise`/`rollingNumber`/`shimmerSweep`/`mascotLetterHop`), and tactile UI helpers (`slidingPillPose`/`tactileTilt`/`slotExpandSpring`/`iconToBarMorph`/`moodCardBlend`/`halftoneWaveCell`/`inspectorBoxPose`).
 - [mix_asmr_template.py](./templates/mix_asmr_template.py) — Parameterized Python ASMR + BGM mixing & R128 mastering pipeline.
 - [check_contrast.py](./scripts/check_contrast.py) — Standalone exact-unrounded WCAG 2.x contrast checker (`4.5:1` text, `3.0:1` large display & UI boundaries, batch + `--selftest`).
 - [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py) — CLI analyzer measuring calm-vs-motion pacing ratio, `ffprobe` streams, and stereo audio peaks/crest/dynamics.

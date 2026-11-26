@@ -54,7 +54,24 @@ Keep calm holds subtly alive so still segments never resemble static screenshots
 
 ---
 
-## 5. Calibration Table by Gate 3 `MOTION` Dial (`1–3`)
+## 5. Extended Micro-Interaction & Brand-Play Patterns (TikTok 6-Ref Studies)
+
+Use these deterministic helpers from [motion_primitives.ts](../../templates/motion_primitives.ts) when a scene calls for collaborative workflows, variant showcases, or brand-led UI morphs:
+
+1. **Icon-to-Input Morph (`iconToBarMorph` — Spotify UI style):**
+   - Stretch an app icon elastically in-place into the live search/prompt bar (`w`, `h`, `radius`, `stretchX/Y`, crossfading `iconOpacity -> inputOpacity`) instead of cutting to an empty screen first.
+2. **Mascot Letter-Hop Lockup (`mascotLetterHop` — Grok Bots style):**
+   - Bounce a compact eyed mascot/brand dot (`squashStretch` + parabolic arc) along the baseline to reveal each character sequentially (`revealedLetters`), then land cleanly as the final period (`isSettledAsPeriod`).
+3. **Mood-Shifting Variant Card (`moodCardBlend` — Apple Store style):**
+   - When clicking a product color swatch, smoothly interpolate the entire card's surface palette (`fromHex -> toHex`) while rotating/scaling the hero product (`productRotDeg`, `productScale`) inside the same container.
+4. **Multi-Cursor Named Collaboration (`evalMultiCursors` — Supabase style):**
+   - Show live multi-user or multi-agent teamwork without prose by driving `3–4` distinct color-coded named pointers (`Alan`, `Jonny`, `Copple`, `Terry`) simultaneously across separate UI zones, pairing curved `evalCursorPos` arcs with `cursorPressState`.
+5. **Visual Inspector Bounding Box (`inspectorBoxPose` — Lovable style):**
+   - On editor/builder beats, snap a crisp `1–2px` bounding box + floating component tag pill (e.g., `Header`) onto the hovered target element so live visual editing reads instantly.
+
+---
+
+## 6. Calibration Table by Gate 3 `MOTION` Dial (`1–3`)
 
 | Gate 3 Dial | Spring Overshoot | Squash-Stretch | Idle Float (`ambientBreath`) | Recommended Text & UI Set |
 |---|---|---|---|---|

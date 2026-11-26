@@ -19,6 +19,12 @@ Measured directly on verified vertical app promo references:
 | **ChatGPT Elastic Ref** *(16:9)* | `10.9s` | **42.9%** | `57.1%` (`11.1x` burst) | Rapid spring-physics icons, App Store peek, home-screen badge bounce |
 | **Apple Widgets Ref** *(dnyxstudios, 16:9)* | `12.2s` | **64.6%** | `35.4%` (`118.7x` burst) | Split-sentence prompt insert -> floating widgets -> 5-card fan spread |
 | **ChatGPT HusniXD Ref** *(16:9)* | `45.0s` | **78.8%** | `21.2%` (`11.8x` burst) | Minimal copy + drag-drop glow, sidebar/table pan, morphing image pill, voice orb |
+| **Vercel / v0 Ref** *(`@__mcvisuals__`, 16:9)* | `9.37s` | `52.8%` | `47.2%` (`3.07x` burst) | Dark macro navbar -> optic blur-to-sharp card -> score ring (`16->96`) -> prompt -> `Visit` CTA |
+| **Apple Store AirPods Ref** *(`@apollox_ae`, 1:1)* | `8.60s` | **66.7%** | `33.3%` (`6.56x` burst) | Particle logo -> 3D device burst -> mood-shifting variant card -> wide feature spec (`peak 0.398`, `81.9%` quiet) |
+| **Grok Bots Ref** *(`@stepan.straufvfx`, 16:9)* | `10.03s` | **64.1%** | `35.9%` (`3.69x` burst) | Wavy dark cloth + macro typing -> 5 eyed sticker bots -> blue bot hops spelling `G-r-o-k.` |
+| **Lovable Ref** *(`@rawedits.10`, 16:9)* | `21.50s` | `35.3%` *(hyper-dense)* | `64.7%` (`18.11x` burst) | Petal wipe -> giant brand prompt -> 3D screen galaxy -> aurora auth -> visual inspector (`Header` box) |
+| **Spotify UI Ref** *(`@apollox_ae`, 1:1)* | `12.70s` | `34.0%` *(beat-cut)* | `66.0%` (`5.57x` burst) | Dock zoom -> app icon morphs into searchbar -> dark player + lyrics -> beat-synced whip reprise |
+| **Supabase Ref** *(`@refined.motion`, 16:9)* | `22.03s` | **80.5%** (`40.2%` near-static) | `19.5%` (`14.66x` burst) | Diagonal emerald beams -> halftone prompt-to-SQL -> cursor-tethered table edit -> multi-cursor `Build together` (`93.2%` quiet) |
 
 ## Non-Negotiable Pacing Rules
 
@@ -33,3 +39,4 @@ Measured directly on verified vertical app promo references:
    - `5–6` acts: **`30s–36s`** (stays well below Instagram Stories `60s` max card and YouTube Shorts `179s` hard cap).
 5. **Dual-File Master Lock:** Keep `timeline.ts` constants (`FPS`, `ACTS`, `CUES`) locked 1:1 with timestamps in `mix.py` so every click, keystroke, drop, and Silent Drop lands within `±16 ms` (1 frame @ 60 FPS).
 6. **Visual-Explain Copy Budget (`2–6` Words Max Per Beat):** Never dump explanatory sentences on screen. Pair `2–6` short bridge words with real visual demonstrations (drag-drop, dropdown pick, morphing status, or card fan).
+7. **Fast-Motion Cap (`> 60%` Kinetic Warning):** Measurements on `Lovable` (`64.7%` kinetic, `2.8%` quiet audio) and `Spotify UI` (`66.0%` kinetic) confirm that sustained `> 60%` rapid motion fatigues viewers when explaining real product info. Reserve high-kinetic ratios strictly for `<= 12s` music-synced teasers; keep multi-feature product demos anchored inside **`55%–83%` calm holds** (like `Supabase`'s `80.5%` calm / `93.2%` quiet headroom) with `2` brief Silent Drops.

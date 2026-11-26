@@ -679,3 +679,299 @@ export const burstParticlePose = (
     rotDeg: deg,
   };
 };
+
+/* ── EXTENDED VFX & COLLABORATIVE UI PRIMITIVES (TikTok 6-Ref Upgrade) ── */
+
+/**
+ * Elastic in-place morph from a square app icon into a wide prompt/search bar
+ * (Spotify UI style) without cutting to an empty intermediate canvas.
+ */
+export const iconToBarMorph = (
+  frame: number,
+  triggerFrame: number,
+  iconSizePx: number,
+  barWidthPx: number,
+  barHeightPx: number,
+  durationFrames = 30
+): {
+  w: number;
+  h: number;
+  radius: number;
+  iconOpacity: number;
+  inputOpacity: number;
+  stretchX: number;
+  stretchY: number;
+} => {
+  const p = progress(frame, triggerFrame, durationFrames);
+  if (p <= 0) {
+    return {
+      w: iconSizePx,
+      h: iconSizePx,
+      radius: Math.round(iconSizePx * 0.24),
+      iconOpacity: 1,
+      inputOpacity: 0,
+      stretchX: 1,
+      stretchY: 1,
+    };
+  }
+  if (p >= 1) {
+    return {
+      w: barWidthPx,
+      h: barHeightPx,
+      radius: Math.round(barHeightPx * 0.5),
+      iconOpacity: 0,
+      inputOpacity: 1,
+      stretchX: 1,
+      stretchY: 1,
+    };
+  }
+
+  const sb = springBounce(frame, triggerFrame, durationFrames, 0.14, 1.4);
+  const flightStretch = p < 0.5 ? Math.sin((p / 0.5) * Math.PI) * 0.18 : 0;
+  const settleSquash = p >= 0.5 ? -Math.sin(((p - 0.5) / 0.5) * Math.PI) * 0.06 * (1 - p) : 0;
+  const stretchX = 1 + flightStretch + settleSquash;
+  return {
+    w: Math.max(iconSizePx * 0.8, lerp(iconSizePx, barWidthPx, sb)),
+    h: Math.max(barHeightPx * 0.8, lerp(iconSizePx, barHeightPx, snappyInOut(p))),
+    radius: lerp(iconSizePx * 0.24, barHeightPx * 0.5, snappyInOut(p)),
+    iconOpacity: clamp(1 - progress(frame, triggerFrame, Math.max(4, Math.round(durationFrames * 0.35))), 0, 1),
+    inputOpacity: clamp(progress(frame, triggerFrame + Math.round(durationFrames * 0.35), Math.max(4, Math.round(durationFrames * 0.45))), 0, 1),
+    stretchX,
+    stretchY: 1 / Math.max(0.65, stretchX),
+  };
+};
+
+/**
+ * Bouncing mascot/dot hops across letter slots revealing characters sequentially,
+ * then settles as the trailing period (Grok Bots style).
+ */
+export const mascotLetterHop = (
+  frame: number,
+  startFrame: number,
+  letterCount: number,
+  stepFrames = 14,
+  hopHeightPx = 54,
+  letterSpacingPx = 44
+): {
+  x: number;
+  y: number;
+  scaleX: number;
+  scaleY: number;
+  revealedLetters: number;
+  isSettledAsPeriod: boolean;
+} => {
+  const safeCount = Math.max(1, Math.round(letterCount));
+  const safeStep = Math.max(4, stepFrames);
+  const totalDur = safeCount * safeStep;
+  const d = frame - startFrame;
+
+  if (d <= 0) {
+    return {
+      x: 0,
+      y: -hopHeightPx * 0.5,
+      scaleX: 1,
+      scaleY: 1,
+      revealedLetters: 0,
+      isSettledAsPeriod: false,
+    };
+  }
+  if (d >= totalDur) {
+    return {
+      x: safeCount * letterSpacingPx,
+      y: 0,
+      scaleX: 1,
+      scaleY: 1,
+      revealedLetters: safeCount,
+      isSettledAsPeriod: true,
+    };
+  }
+
+  const hopIdx = Math.min(safeCount - 1, Math.floor(d / safeStep));
+  const localT = (d - hopIdx * safeStep) / safeStep;
+  const arc = Math.sin(localT * Math.PI);
+  const squash = localT < 0.16 ? -0.14 * Math.sin((localT / 0.16) * Math.PI) : arc * 0.12;
+  const scaleY = 1 + squash;
+
+  return {
+    x: lerp(hopIdx * letterSpacingPx, (hopIdx + 1) * letterSpacingPx, snappyInOut(localT)),
+    y: -arc * hopHeightPx,
+    scaleX: 1 / Math.max(0.7, scaleY),
+    scaleY,
+    revealedLetters: Math.min(safeCount, hopIdx + (localT >= 0.25 ? 1 : 0)),
+    isSettledAsPeriod: false,
+  };
+};
+
+const parseHexRgb = (hex: string): [number, number, number] => {
+  const clean = hex.trim().replace("#", "");
+  if (clean.length === 3) {
+    return [
+      parseInt(clean[0] + clean[0], 16) || 0,
+      parseInt(clean[1] + clean[1], 16) || 0,
+      parseInt(clean[2] + clean[2], 16) || 0,
+    ];
+  }
+  const full = clean.padEnd(6, "0").slice(0, 6);
+  const n = parseInt(full, 16);
+  if (Number.isNaN(n)) return [0, 0, 0];
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+};
+
+/**
+ * Smoothly blends an entire variant card's background color while rotating/popping
+ * the active hero product (Apple Store AirPods Max mood-shifting card style).
+ */
+export const moodCardBlend = (
+  frame: number,
+  switchFrame: number,
+  fromHex: string,
+  toHex: string,
+  durationFrames = 24,
+  spinDeg = 18
+): {
+  bgRgb: string;
+  hex: string;
+  productRotDeg: number;
+  productScale: number;
+} => {
+  const p = progress(frame, switchFrame, durationFrames);
+  const t = snappyInOut(p);
+  const [r1, g1, b1] = parseHexRgb(fromHex);
+  const [r2, g2, b2] = parseHexRgb(toHex);
+  const r = Math.round(lerp(r1, r2, t));
+  const g = Math.round(lerp(g1, g2, t));
+  const b = Math.round(lerp(b1, b2, t));
+  const toHex2 = (v: number) => clamp(Math.round(v), 0, 255).toString(16).padStart(2, "0");
+
+  const sb = springBounce(frame, switchFrame, durationFrames, 0.12, 1.25);
+  const rotImpulse = p > 0 && p < 1 ? Math.sin(p * Math.PI) * spinDeg : 0;
+
+  return {
+    bgRgb: `rgb(${r}, ${g}, ${b})`,
+    hex: `#${toHex2(r)}${toHex2(g)}${toHex2(b)}`.toUpperCase(),
+    productRotDeg: rotImpulse,
+    productScale: p <= 0 || p >= 1 ? 1 : lerp(0.94, 1.0, sb),
+  };
+};
+
+export type NamedCursorTrack = {
+  id: string;
+  label: string;
+  color: string;
+  waypoints: readonly CursorWaypoint[];
+  clickFrames?: readonly number[];
+};
+
+/**
+ * Drives 2–4 simultaneous named collaborative cursors (Supabase "Build together" style)
+ * deterministically from independent waypoint and click arrays.
+ */
+export const evalMultiCursors = (
+  frame: number,
+  tracks: readonly NamedCursorTrack[]
+): Array<{
+  id: string;
+  label: string;
+  color: string;
+  x: number;
+  y: number;
+  tilt: number;
+  pressScale: number;
+  isPressed: boolean;
+}> =>
+  tracks.map((track) => {
+    const pos = evalCursorPos(frame, track.waypoints);
+    const press = cursorPressState(frame, track.clickFrames ?? []);
+    return {
+      id: track.id,
+      label: track.label,
+      color: track.color,
+      x: pos.x,
+      y: pos.y,
+      tilt: pos.tilt,
+      pressScale: press.scale,
+      isPressed: press.isPressed,
+    };
+  });
+
+/**
+ * Computes clamped counter-pan camera coordinates tethered to an active cursor
+ * during multi-step zoomed UI walkthroughs (Supabase Table Editor style).
+ */
+export const tetheredCameraFollow = (
+  cursorX: number,
+  cursorY: number,
+  frameWidth: number,
+  frameHeight: number,
+  zoom = 2.0,
+  followStrength = 0.72,
+  maxOffsetX = 420,
+  maxOffsetY = 260
+): { x: number; y: number; scale: number } => {
+  const cx = frameWidth * 0.5;
+  const cy = frameHeight * 0.5;
+  const targetX = -(cursorX - cx) * followStrength;
+  const targetY = -(cursorY - cy) * followStrength;
+  return {
+    x: clamp(targetX, -Math.abs(maxOffsetX), Math.abs(maxOffsetX)),
+    y: clamp(targetY, -Math.abs(maxOffsetY), Math.abs(maxOffsetY)),
+    scale: Math.max(1, zoom),
+  };
+};
+
+/**
+ * Radial glowing halftone dot-matrix wave for prompt-to-code or state transitions
+ * (Supabase SQL burst style).
+ */
+export const halftoneWaveCell = (
+  col: number,
+  row: number,
+  cols: number,
+  rows: number,
+  frame: number,
+  triggerFrame: number,
+  durationFrames = 34,
+  bandWidth = 0.34
+): { radiusScale: number; opacity: number } => {
+  const p = progress(frame, triggerFrame, durationFrames);
+  if (p <= 0 || p >= 1) return { radiusScale: 0, opacity: 0 };
+
+  const nx = cols > 1 ? (col / (cols - 1)) * 2 - 1 : 0;
+  const ny = rows > 1 ? (row / (rows - 1)) * 2 - 1 : 0;
+  const dist = Math.hypot(nx, ny) / Math.SQRT2; // 0 at center, 1 at corners
+  const waveRadius = lerp(-0.15, 1.25, snappyOut(p));
+  const delta = Math.abs(dist - waveRadius);
+  const safeBand = Math.max(0.05, bandWidth);
+  const strength = clamp(1 - delta / safeBand, 0, 1);
+  const smooth = strength * strength * (3 - 2 * strength);
+  const envelope = Math.sin(p * Math.PI);
+
+  return {
+    radiusScale: smooth * envelope,
+    opacity: clamp(smooth * envelope * 0.95, 0, 1),
+  };
+};
+
+/**
+ * Visual-editor selection frame + component label pill reveal (Lovable Inspector style).
+ */
+export const inspectorBoxPose = (
+  frame: number,
+  hoverFrame: number,
+  durationFrames = 20
+): { scale: number; borderOpacity: number; tagY: number; tagOpacity: number } => {
+  const p = progress(frame, hoverFrame, durationFrames);
+  if (p <= 0) {
+    return { scale: 0.97, borderOpacity: 0, tagY: 8, tagOpacity: 0 };
+  }
+  if (p >= 1) {
+    return { scale: 1, borderOpacity: 1, tagY: 0, tagOpacity: 1 };
+  }
+  const sb = springBounce(frame, hoverFrame, durationFrames, 0.08, 1.2);
+  return {
+    scale: lerp(0.97, 1.0, sb),
+    borderOpacity: clamp(p * 3.5, 0, 1),
+    tagY: lerp(8, 0, snappyOut(p)),
+    tagOpacity: clamp(progress(frame, hoverFrame + 2, Math.max(4, durationFrames - 4)), 0, 1),
+  };
+};
