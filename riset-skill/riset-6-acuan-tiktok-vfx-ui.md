@@ -46,8 +46,24 @@ Dari audit terhadap **V4 (`64,7%` gerak cepat, `2,8%` sunyi, `peak 0,924`)** dan
 
 ---
 
-## 4. Daftar Berkas Baru & Pembaruan
+## 4. Hasil Bedah Presisi `rea-video` (6 Video Acuan)
+
+Seluruh 6 video juga sudah dibedah per bingkai (`30 FPS`) menggunakan alat `rea-video` yang kini diintegrasikan jalurnya ke modul [reference-video-extractor.md](../skill/motion-graphic-director/references/modules/reference-video-extractor.md):
+
+| Video | Potongan Adegan | Babak Gerak (`scenes`) | Titik Kunci (`@frame`) | Tempo & Kunci Nada | Klip Suara Terpisah | Catatan Kamera & Koreksi Visual |
+|---|---|---|---|---|---|---|
+| **V1 · Vercel / v0** | `2` adegan | `4` babak | **`24` titik** (`@0..@280`) | `136 BPM` · `F mayor` | `1` ketukan (`4,4 dtk`) | Gerak *zoom* cepat (`+28%/dtk` masuk -> `-53%/dtk` mundur membuka kartu proyek). |
+| **V2 · Apple Store** | `5` adegan | `1` babak kode | **`36` titik** (`@0..@257`) | `112 BPM` · `C mayor` | `2` klip (`1,2 dtk`, `4,3 dtk`) | Mesin offline melabeli kartu produk sebagai 3D (`88%`), wajib dikoreksi ke kode + foto produk. |
+| **V3 · Grok Bots** | `3` adegan | `2` babak kode | **`27` titik** (`@0..@300`) | `112 BPM` · `F mayor` | `0` terdeteksi *(suara masuk ke musik)* | Terlihat putaran kamera halus `12,9°/dtk` saat menyusuri kolom ketik sebelum 5 maskot muncul. |
+| **V4 · Lovable** | `14` adegan | `5` babak kode | **`83` titik** (`@0..@644`) | `144 BPM` · `F mayor` | `7` ketukan (`5` suara unik) | Paling padat perpindahan (`83` titik kunci). Label "AI/3D" di beberapa transisi gradien dikoreksi secara visual. |
+| **V5 · Spotify UI** | `9` adegan | `5` babak kode | **`55` titik** (`@0..@380`) | `150 BPM` · `C mayor` | `1` klip (`3,5 dtk`) | Potongan adegan tercatat tepat jatuh di ketukan musik; *zoom* dorong masuk mencapai `+44%/dtk` ke layar pemutar. |
+| **V6 · Supabase** | `7` adegan | `10` babak kode | **`44` titik** (`@0..@660`) | `178 BPM` · `C mayor` | `7` ketukan (`6` suara unik) | Paling lengkap untuk acuan: latar `#151515`, pendar `#305a42`, 4 kursor terpotong bersih; suara bernada tinggi sempat salah dikira TTS oleh alat offline (dikoreksi: non-VO). |
+
+---
+
+## 5. Daftar Berkas Baru & Pembaruan
 
 - **Gaya Baru ke-11:** [11-dark-tech-beam-halftone.md](../skill/motion-graphic-director/references/styles/11-dark-tech-beam-halftone.md)
-- **Pembaruan Panduan, Modul & Cetakan:** [SKILL.md](../skill/motion-graphic-director/SKILL.md), [pacing-choreography.md](../skill/motion-graphic-director/references/modules/pacing-choreography.md), [living-ui-physics.md](../skill/motion-graphic-director/references/modules/living-ui-physics.md), [camera-and-3d.md](../skill/motion-graphic-director/references/modules/camera-and-3d.md), [motion_primitives.ts](../skill/motion-graphic-director/templates/motion_primitives.ts)
+- **Modul Baru Pembedah Acuan:** [reference-video-extractor.md](../skill/motion-graphic-director/references/modules/reference-video-extractor.md)
+- **Pembaruan Panduan, Modul & Cetakan:** [SKILL.md](../skill/motion-graphic-director/SKILL.md), [06-custom-reference-adapter.md](../skill/motion-graphic-director/references/styles/06-custom-reference-adapter.md), [pacing-choreography.md](../skill/motion-graphic-director/references/modules/pacing-choreography.md), [living-ui-physics.md](../skill/motion-graphic-director/references/modules/living-ui-physics.md), [camera-and-3d.md](../skill/motion-graphic-director/references/modules/camera-and-3d.md), [motion_primitives.ts](../skill/motion-graphic-director/templates/motion_primitives.ts)
 - **Dokumentasi Proyek:** [README.md](../README.md) & catatan ini

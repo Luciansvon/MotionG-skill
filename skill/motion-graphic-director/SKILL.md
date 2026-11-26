@@ -16,7 +16,7 @@ Use this skill to direct, audit, and produce vertical `9:16` and landscape `16:9
 
 ## Core Multi-Style & Visual-Explain Rules
 
-- **Custom Reference First:** When the owner supplies images or videos as creative direction, ALWAYS load [06-custom-reference-adapter.md](./references/styles/06-custom-reference-adapter.md) and measure reference pacing with [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py).
+- **Custom Reference First:** When the owner supplies images or videos as creative direction, ALWAYS load [06-custom-reference-adapter.md](./references/styles/06-custom-reference-adapter.md) + [reference-video-extractor.md](./references/modules/reference-video-extractor.md) and measure reference pacing/frames with [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py) (plus `rea-video` when installed).
 - **10 Built-In Art Directions (`01–05`, `07–11`):** When no custom reference is given, choose or intentionally blend across acts (mix styles only when dramatic contrast strengthens the story).
 - **Visual-Explain First (`2–6 words/beat`):** Show actions visually (drag-and-drop, dropdown pick, morphing pills, fan spreads) instead of text walls.
 - **Two-Layer Motion:** Pair eye-guiding camera moves with **Living UI** (idle breathing during calm holds + elastic squash-stretch bounce/morph on reactions).
@@ -102,7 +102,8 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 - [storyboard-segments.md](./references/modules/storyboard-segments.md) — Gate 1 mandatory Q&A + Gate 2 8-segment storyboard builder & 2–6 word visual-explain budget.
 - [living-ui-physics.md](./references/modules/living-ui-physics.md) — Two-layer motion rules: staggered breathing UI, calibrated elastic bounce, kinetic typography (`maskedWordRise`/`rollingNumber`), liquid sliding pills, tactile tilts, drag-drop springs, and `MOTION` 1–3 calibration.
 - [visual-assets-engine.md](./references/modules/visual-assets-engine.md) — Strict `Code -> Three.js -> Optional PNG/WebP` hierarchy, 4-step sourcing fallback, anti-lazy-PNG & copyright rules.
-- [pacing-choreography.md](./references/modules/pacing-choreography.md) — Slow-Fast-Slow timing ratios, 10 measured reference benchmarks, reading hold budgets.
+- [pacing-choreography.md](./references/modules/pacing-choreography.md) — Slow-Fast-Slow timing ratios, 10+ measured reference benchmarks, reading hold budgets.
+- [reference-video-extractor.md](./references/modules/reference-video-extractor.md) — Curated `rea-video` workflow for `@frame`-exact reference timing, camera speeds, glow colors, and SFX/stem extraction (excluding live-action/AI-film bloat).
 - [camera-and-3d.md](./references/modules/camera-and-3d.md) — Eye-guiding camera keyframes, macro UI focus, `2.4x` typing rail, Three.js 3D rules, CTA pixel-lock, continuity morphs.
 - [sound-asmr-engine.md](./references/modules/sound-asmr-engine.md) — Royalty-free ASMR SFX sourcing, 0ms onset trim, `lowpass` warmth shaping, Silent Drops, `-ac 2` stereo metering.
 - [ui-antislop-gate.md](./references/modules/ui-antislop-gate.md) — 3-tier anti-slop rules & dose caps, Liveliness 3 Dials + 5 Levers, anti-card-cage 3D rule, copy filter, 4-Block Delivery Gate, and Windows Headless Chrome capture rules.
