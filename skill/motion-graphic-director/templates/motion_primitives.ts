@@ -41,6 +41,47 @@ export const cubicInOut = (t: number): number => {
   return p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
 };
 
+export type MaskedSlideOptions = {
+  durationFrames?: number;
+  travelX?: number;
+  travelY?: number;
+  maxBlurPx?: number;
+  exposureBoost?: number;
+  minOpacity?: number;
+};
+
+/**
+ * Two scenes slide in the same direction. Blur and exposure peak at the cut,
+ * and the foreground briefly dims to hide the jump between scene offsets.
+ */
+export const maskedSlidePose = (
+  frame: number,
+  cutFrame: number,
+  options: MaskedSlideOptions = {},
+) => {
+  const scene = frame < cutFrame ? "outgoing" : "incoming";
+  const halfDuration = (options.durationFrames ?? 24) / 2;
+  const distance = Math.abs(frame - cutFrame);
+
+  if (distance >= halfDuration) {
+    return {scene, x: 0, y: 0, blurPx: 0, brightness: 1, opacity: 1, effect: 0};
+  }
+
+  const closeness = 1 - distance / halfDuration;
+  const travel = closeness ** 3 * (scene === "incoming" ? 1 : -1);
+  const effect = Math.sin(closeness * Math.PI / 2) ** 2;
+
+  return {
+    scene,
+    x: travel * (options.travelX ?? 0),
+    y: travel * (options.travelY ?? 240),
+    blurPx: Math.max(0, options.maxBlurPx ?? 32) * effect,
+    brightness: 1 + Math.max(0, options.exposureBoost ?? 0.4) * effect,
+    opacity: lerp(1, clamp(options.minOpacity ?? 0.28), effect ** 7),
+    effect,
+  };
+};
+
 /**
  * Overshoot-calibrated harmonic spring for unmistakable elastic entrances and settles.
  * Returns 0 before triggerFrame, rises past 1.0 by roughly `overshootAmount`, rebounds,
@@ -629,6 +670,35 @@ export const cursorPressState = (
     }
   }
   return { scale: 1, isPressed: false };
+};
+
+export type CursorContactOptions = {
+  pressFrames?: number;
+  releaseFrames?: number;
+  minCursorScale?: number;
+  minTargetScale?: number;
+  rotationDeg?: number;
+};
+
+/** Drive the pointer and the target from a shared, frame-exact contact cue. */
+export const cursorContactPose = (
+  frame: number,
+  clickFrame: number,
+  options: CursorContactOptions = {},
+) => {
+  const pressFrames = Math.max(1, options.pressFrames ?? 6);
+  const releaseFrames = Math.max(1, options.releaseFrames ?? 12);
+  const peakFrame = clickFrame + pressFrames;
+  const pressAmount = frame <= peakFrame
+    ? cubicInOut(progress(frame, clickFrame, pressFrames))
+    : 1 - cubicInOut(progress(frame, peakFrame, releaseFrames));
+
+  return {
+    pressAmount,
+    cursorScale: lerp(1, clamp(options.minCursorScale ?? 0.75), pressAmount),
+    targetScale: lerp(1, clamp(options.minTargetScale ?? 0.9), pressAmount),
+    cursorRotation: (options.rotationDeg ?? 8) * pressAmount,
+  };
 };
 
 /**

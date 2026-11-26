@@ -42,9 +42,9 @@ Keep calm holds subtly alive so still segments never resemble static screenshots
 **Zero Teleport Law:** Never swap an active pill highlight with a 1-frame boolean color flip (`isActive ? blue : transparent`), and never spawn a dropped image slot instantaneously (`width: dropped ? 132 : 0`).
 
 1. **Physical Pointer + Click Ripples:**
-   - Move smoothly along curved arcs (`evalCursorPos`), pinch the arrow (`cursorPressState`) on grabs and clicks, and emit an expanding sonar ring (`clickRipple`) at the exact tap coordinate.
+   - Move smoothly along curved arcs (`evalCursorPos`). For a standard click, use `cursorPressState` and center the `clickRipple` on the tap coordinate.
 2. **Magnetic Hover & Elastic Drop Chain:**
-   - Approaching cursor triggers `hoverProximity` glow/lift on target button or dropzone.
+   - Approaching cursor triggers `hoverProximity` glow/lift on target button or dropzone. Use `cursorContactPose` for paired compression when the target and pointer should react together. Drive both transforms from one cue and pivot at the click location. [UI editing recipes](ui-editing-recipes.md)
    - Dropping a photo opens its thumbnail slot with `slotExpandSpring` (pushing `"Buat 3D"` text aside smoothly with overshoot), compressing the bar (`squashStretch`) + firing `cameraRecoil`.
 3. **Liquid Segmented / Clip Controls:**
    - Slide active highlights smoothly with velocity-based horizontal stretch (`slidingPillPose`: stretches wider mid-flight, squashes on arrival).

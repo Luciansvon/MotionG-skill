@@ -9,7 +9,7 @@ Pair these deterministic 60 FPS primitives (zero CSS transitions, zero `Math.ran
 - **Physical Click Coupling:** Every cursor tap combines:
   1. Curved arc approach (`evalCursorPos` with sinusoidal `arc` lift),
   2. Target magnet glow (`hoverProximity` smoothly brightening rim/pill before contact),
-  3. Tactile spring compress/rebound (`buttonPressScale`: `1.0 -> 0.86 -> 1.07 -> 1.0`),
+  3. Tactile target rebound with `buttonPressScale` (0.84 at +5 frames, 1.10 at +14, back to 1.00 at +26), or paired cursor and target compression with `cursorContactPose`. [UI editing recipes](ui-editing-recipes.md)
   4. Camera recoil (`cameraRecoil`: `-0.04` scale dip, `+10px` downward kick, `-2.2deg` pitch tilt over ~18 frames).
 - **3-Plane Depth Rack-Focus (`rackFocusMetrics`):** Offset inactive cards along Z (`zPx: -130 -> +84px`), blur (`blurPx: 9 -> 0px`), and opacity (`0.42 -> 1.0`) to simulate real shallow-depth camera lens pulling focus between stacked slabs.
 

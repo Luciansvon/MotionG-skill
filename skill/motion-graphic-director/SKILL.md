@@ -45,7 +45,7 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 
 ### Gate 2: Segmented Storyboard & Asset Medium Manifest (Owner Approval Required)
 1. Read [storyboard-segments.md](./references/modules/storyboard-segments.md) and [visual-assets-engine.md](./references/modules/visual-assets-engine.md).
-2. Map the video across the **8 standard segments** (`Hook`, `Problem Agitation`, `Product Reveal`, `Feature Demo #1`, `Feature Demo #2`, `Tangible Proof`, `Message Lockup`, `Outro & CTA`), keeping copy within `2–6` words per beat.
+2. Map the video across the **8 standard segments** (`Hook`, `Problem Agitation`, `Product Reveal`, `Feature Demo #1`, `Feature Demo #2`, `Tangible Proof`, `Message Lockup`, `Outro & CTA`), keeping copy within `2–6` words per beat. For each product action, name the visible result and the element the viewer follows from setup through proof. [UI editing recipes](./references/modules/ui-editing-recipes.md)
 3. Declare the medium per element (**Tier 1 Code -> Tier 2 `Three.js` -> Tier 3 Optional `PNG`/`WebP` only if needed**; never flatten UI/buttons/3D hardware into lazy PNGs).
 4. Present the **6-column storyboard table** and obtain explicit owner approval before Gate 3.
 
@@ -61,7 +61,8 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
    - Maintain `55%–83%` calm readable holds (`1.8–2.2s` per key line) contrasted against crisp `0.35–0.85s` transitions (`11x–118x` burst contrast), while keeping **`near_static_pct < 28%`** via continuous subtle background/camera/idle life (zero `3–5s` frozen holds).
    - **Visible Bounce & Staggered Idle Life:** Drive entrances with full `springBounce` / `elasticPop` (`12%–22%` overshoot; never dilute via `lerp(0.86, 1, pop)`), drops and metric collision-bounce pairings (`70%` vs `30%`) with `squashStretch` + `cameraRecoil`, and calm holds with staggered `ambientBreath` / `pulseGlow`.
    - **Zero Flat Headline Fades:** Animate key copy word-by-word via `maskedWordRise` + `kineticExit`, accent keywords via `shimmerSweep` / `underlineDraw`, and real stats/progress via `rollingNumber`.
-   - **Zero 1-Frame UI Teleports:** Pair curved pointer sweeps (`evalCursorPos`) with `cursorPressState` + `clickRipple`, smooth `slotExpandSpring` drops, liquid `slidingPillPose` + `tactileTilt` tab clicks, `morphBox`, `iconToBarMorph`, `moodCardBlend`, `mascotLetterHop`, `evalMultiCursors`, `inspectorBoxPose`, `cardFanPose`, `splitInsertGap`, and restrained completion `burstParticlePose`.
+   - **Zero 1-Frame UI Teleports:** Pair curved pointer sweeps (`evalCursorPos`) with one press driver per click. Use `cursorPressState` + `clickRipple` or `cursorContactPose` for paired compression. Keep smooth `slotExpandSpring` drops, liquid `slidingPillPose` + `tactileTilt` tab clicks, `morphBox`, `iconToBarMorph`, `moodCardBlend`, `mascotLetterHop`, `evalMultiCursors`, `inspectorBoxPose`, `cardFanPose`, `splitInsertGap`, and restrained completion `burstParticlePose`.
+   - For paired click compression or a two-scene slide with a masked cut, use `cursorContactPose` and `maskedSlidePose`. Set the contact and cut frames in the storyboard and use the [UI editing recipes](./references/modules/ui-editing-recipes.md) checks.
    - Use `2.35x–2.45x` macro zooms or `tetheredCameraFollow` pans with clamped backdrop parallax (`<= ±34px`) and optional `halftoneWaveCell` transitions, mount `<ThreeCanvas>` **OUTSIDE** `<CameraMotionBlur>`, never pass `frame` as a prop inside `<CameraMotionBlur>`, keep hero 3D phones around `57%–60%` height (`max_z < -0.5` for orbital rings).
 
 ### Gate 5: ASMR Tactile Sound Design & Audio Mastering
@@ -104,6 +105,7 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 - [visual-assets-engine.md](./references/modules/visual-assets-engine.md) — Strict `Code -> Three.js -> Optional PNG/WebP` hierarchy, 4-step sourcing fallback, anti-lazy-PNG & copyright rules.
 - [pacing-choreography.md](./references/modules/pacing-choreography.md) — Slow-Fast-Slow timing ratios, 10+ measured reference benchmarks, reading hold budgets.
 - [reference-video-extractor.md](./references/modules/reference-video-extractor.md) — Curated `rea-video` workflow for `@frame`-exact reference timing, camera speeds, glow colors, and SFX/stem extraction (excluding live-action/AI-film bloat).
+- [ui-editing-recipes.md](./references/modules/ui-editing-recipes.md) — Setup, action and visual proof, paired tactile clicks, two-part masked slides, and frame-level review.
 - [camera-and-3d.md](./references/modules/camera-and-3d.md) — Eye-guiding camera keyframes, macro UI focus, `2.4x` typing rail, Three.js 3D rules, CTA pixel-lock, continuity morphs.
 - [sound-asmr-engine.md](./references/modules/sound-asmr-engine.md) — Royalty-free ASMR SFX sourcing, 0ms onset trim, `lowpass` warmth shaping, Silent Drops, `-ac 2` stereo metering.
 - [ui-antislop-gate.md](./references/modules/ui-antislop-gate.md) — 3-tier anti-slop rules & dose caps, Liveliness 3 Dials + 5 Levers, anti-card-cage 3D rule, copy filter, 4-Block Delivery Gate, and Windows Headless Chrome capture rules.
