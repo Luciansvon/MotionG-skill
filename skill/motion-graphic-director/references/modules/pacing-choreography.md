@@ -25,6 +25,7 @@ Measured directly on verified vertical app promo references:
 | **Lovable Ref** *(`@rawedits.10`, 16:9)* | `21.50s` | `35.3%` *(hyper-dense)* | `64.7%` (`18.11x` burst) | Petal wipe -> giant brand prompt -> 3D screen galaxy -> aurora auth -> visual inspector (`Header` box) |
 | **Spotify UI Ref** *(`@apollox_ae`, 1:1)* | `12.70s` | `34.0%` *(beat-cut)* | `66.0%` (`5.57x` burst) | Dock zoom -> app icon morphs into searchbar -> dark player + lyrics -> beat-synced whip reprise |
 | **Supabase Ref** *(`@refined.motion`, 16:9)* | `22.03s` | **80.5%** (`40.2%` near-static) | `19.5%` (`14.66x` burst) | Diagonal emerald beams -> halftone prompt-to-SQL -> cursor-tethered table edit -> multi-cursor `Build together` (`93.2%` quiet) |
+| **Polifurneka Kendal Promo** *(16:9, 60 FPS)* | `36.01s` | **90.2%** (`23.1%` near-static; cut from `49.0%`) | `9.8%` (`4.1x` burst) | Minimal 1–4 word beats -> symmetric split prompt -> official crest -> 3D PNG chameleon deck -> `70%` vs `30%` collision bounce -> multi-cursor collab |
 
 ## Non-Negotiable Pacing Rules
 
@@ -40,3 +41,4 @@ Measured directly on verified vertical app promo references:
 5. **Dual-File Master Lock:** Keep `timeline.ts` constants (`FPS`, `ACTS`, `CUES`) locked 1:1 with timestamps in `mix.py` so every click, keystroke, drop, and Silent Drop lands within `±16 ms` (1 frame @ 60 FPS).
 6. **Visual-Explain Copy Budget (`2–6` Words Max Per Beat):** Never dump explanatory sentences on screen. Pair `2–6` short bridge words with real visual demonstrations (drag-drop, dropdown pick, morphing status, or card fan).
 7. **Fast-Motion Cap (`> 60%` Kinetic Warning):** Measurements on `Lovable` (`64.7%` kinetic, `2.8%` quiet audio) and `Spotify UI` (`66.0%` kinetic) confirm that sustained `> 60%` rapid motion fatigues viewers when explaining real product info. Reserve high-kinetic ratios strictly for `<= 12s` music-synced teasers; keep multi-feature product demos anchored inside **`55%–83%` calm holds** (like `Supabase`'s `80.5%` calm / `93.2%` quiet headroom) with `2` brief Silent Drops.
+8. **Hard Dead-Freeze Ceiling (`near_static_pct < 28%`):** High readable calm time (`calm_float_or_read_pct ~80%–92%`) does **NOT** mean frozen screenshots. Never let any scene sit completely motionless for `> 1.2s` (avoid `3–5s` static holds). Keep subtle background drift (panning grid or sweeping light beams), slow camera push/orbit, rotating halos, or staggered `ambientBreath` alive continuously so `audit_pacing_and_audio.py` measures **`near_static_pct < 28%`**.

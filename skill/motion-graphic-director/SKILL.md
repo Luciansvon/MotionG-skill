@@ -58,8 +58,8 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 ### Gate 4: Two-Layer Choreography — Eye-Guiding Camera, Kinetic Type & Living UI
 1. Read [pacing-choreography.md](./references/modules/pacing-choreography.md), [camera-and-3d.md](./references/modules/camera-and-3d.md), and [living-ui-physics.md](./references/modules/living-ui-physics.md).
 2. Reuse deterministic 60 FPS primitives in [motion_primitives.ts](./templates/motion_primitives.ts):
-   - Maintain `55%–83%` calm readable holds (`1.8–2.2s` per key line) contrasted against crisp `0.35–0.85s` transitions (`11x–118x` burst contrast).
-   - **Visible Bounce & Staggered Idle Life:** Drive entrances with full `springBounce` / `elasticPop` (`12%–22%` overshoot; never dilute via `lerp(0.86, 1, pop)`), drops with `squashStretch` + `cameraRecoil`, and calm holds with staggered `ambientBreath` / `pulseGlow`.
+   - Maintain `55%–83%` calm readable holds (`1.8–2.2s` per key line) contrasted against crisp `0.35–0.85s` transitions (`11x–118x` burst contrast), while keeping **`near_static_pct < 28%`** via continuous subtle background/camera/idle life (zero `3–5s` frozen holds).
+   - **Visible Bounce & Staggered Idle Life:** Drive entrances with full `springBounce` / `elasticPop` (`12%–22%` overshoot; never dilute via `lerp(0.86, 1, pop)`), drops and metric collision-bounce pairings (`70%` vs `30%`) with `squashStretch` + `cameraRecoil`, and calm holds with staggered `ambientBreath` / `pulseGlow`.
    - **Zero Flat Headline Fades:** Animate key copy word-by-word via `maskedWordRise` + `kineticExit`, accent keywords via `shimmerSweep` / `underlineDraw`, and real stats/progress via `rollingNumber`.
    - **Zero 1-Frame UI Teleports:** Pair curved pointer sweeps (`evalCursorPos`) with `cursorPressState` + `clickRipple`, smooth `slotExpandSpring` drops, liquid `slidingPillPose` + `tactileTilt` tab clicks, `morphBox`, `iconToBarMorph`, `moodCardBlend`, `mascotLetterHop`, `evalMultiCursors`, `inspectorBoxPose`, `cardFanPose`, `splitInsertGap`, and restrained completion `burstParticlePose`.
    - Use `2.35x–2.45x` macro zooms or `tetheredCameraFollow` pans with clamped backdrop parallax (`<= ±34px`) and optional `halftoneWaveCell` transitions, mount `<ThreeCanvas>` **OUTSIDE** `<CameraMotionBlur>`, never pass `frame` as a prop inside `<CameraMotionBlur>`, keep hero 3D phones around `57%–60%` height (`max_z < -0.5` for orbital rings).
@@ -75,8 +75,8 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 3. Render keyframe stills (`npx remotion still`), proofread **all copy character-by-character**, verify asset sharpness/proportions, pixel-lock 2D cursor taps to 3D CTA centers, and inspect every still via `read_file`.
 
 ### Gate 7: Dual-Output Rendering & 4-Block Delivery Gate Verification
-1. Render **`60 FPS`** master (`--crf=18 --audio-bitrate=192k`).
-2. When targeting mobile sharing/IG Story in `9:16`, also encode **`< 10 MB`** `30 FPS` version via [export_wa_igstory_10mb.py](./scripts/export_wa_igstory_10mb.py) (`aq-mode=3` dark-gradient protection).
+1. Render **`60 FPS`** master using GPU acceleration (`--gl=angle --hardware-acceleration=if-possible --concurrency=8`; `--video-bitrate=12M --audio-bitrate=192k` for end-to-end GPU encoding, or `--crf=18 --audio-bitrate=192k` for software x264 quality).
+2. When targeting mobile sharing/WhatsApp Status (`<= 90s` limit) or IG Story in either `9:16` or `16:9`, also encode **`< 10 MB`** `30 FPS` version via [export_wa_igstory_10mb.py](./scripts/export_wa_igstory_10mb.py) or `ffmpeg` (`aq-mode=3` dark-gradient protection, auto-fallback from `h264_nvenc` to `libx264`).
 3. Verify output MP4(s) with [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py), inspect extracted stills, and complete the **4-Block Evidence-Backed Delivery Gate** ([ui-antislop-gate.md](./references/modules/ui-antislop-gate.md) & [pre-render-qc.md](./references/checklists/pre-render-qc.md)) before delivery.
 
 ---

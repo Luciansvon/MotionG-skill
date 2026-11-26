@@ -36,3 +36,4 @@ Whenever the approved Gate 2 storyboard explicitly calls for a Tier 3 `PNG`/`Web
   - Zero watermarks or stock badges.
   - Zero distorted AI fingers, garbled background text, or jagged alpha halos around cutouts.
   - Aspect ratio locked (`object-fit: cover/contain`, never squashed or stretched).
+  - **Seamless 3D Studio PNG Card Blending:** When placing AI-generated 3D studio illustrations on colored cards (without alpha cutout), sample the image's **actual median border RGB hex** to set the card background color (never guess a nearby dark hex) and apply a soft radial vignette mask (`radial-gradient(ellipse 68% 68% at 50% 50%, black 46%, transparent 90%)`) so zero faint rectangular edge halo remains visible.

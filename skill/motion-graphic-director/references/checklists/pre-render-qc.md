@@ -11,6 +11,7 @@ Do NOT declare a render complete until every single gate below is empirically ve
 - [ ] **Act Rhythm, Mockup Approval & Swap-Logo Test (`R-05 / R-20`):** Owner explicitly approved 3 compositionally distinct Gate 3 PNG mockups, and the style still passes the Swap-Logo distinctiveness test.
 - [ ] **Living UI & Visible Bounce Check:**
   - Calm holds use staggered `ambientBreath` (`>= 8px` drift / `±1.8–2.2%` scale, distinct `phaseOffset`) — zero dead slides.
+  - **Symmetric Split-Insert & Zero Premature Chrome:** Split-sentence prompt bars lock `cam.x = 0` with equal left/right clearance; zero decorative status dot-pills (`• Tag`) and zero premature CTAs before the Outro.
   - Elastic entrances apply `springBounce` / `elasticPop` directly (`12%–22%` overshoot, NOT crushed via `lerp(0.86, 1, pop)`) and drops trigger visible `squashStretch` + `cameraRecoil`.
 - [ ] **Kinetic Typography & Zero 1-Frame Teleports Check:**
   - Primary headlines and outro lockups use `maskedWordRise` / staggered kinetic word motion (zero flat whole-block opacity fades), and real metrics/progress animate with `rollingNumber`.
@@ -38,8 +39,9 @@ Do NOT declare a render complete until every single gate below is empirically ve
   - [ ] Stereo (`-ac 2`) `peak <= 0.92`, `crest_db >= 14.0`, `dyn_p95_p10_db >= 12.0`.
 
 ## Phase C: Dual-Output MP4 Verification
-- [ ] Master MP4 (`60 FPS`): `1080x1920`, `60/1` fps, `< 72 MB`, `AAC 48kHz stereo`, stereo `peak <= 0.96`.
-- [ ] WA / IG Story MP4 (`30 FPS`): strictly **`< 10,000,000` bytes**, `1080x1920`, `30/1` fps, stereo `peak <= 0.96`.
+- [ ] Master MP4 (`60 FPS`): `1080x1920` (portrait) or `1920x1080` (landscape), `60/1` fps, `< 72 MB`, `AAC 48kHz stereo`, stereo `peak <= 0.96`.
+- [ ] **Anti-Freeze Pacing Verified (`audit_pacing_and_audio.py`):** `near_static_pct < 28%` on the rendered MP4 (zero 3–5s frozen slides while keeping `calm_float_or_read_pct` comfortable to read).
+- [ ] WA / IG Story MP4 (`30 FPS`): strictly **`< 10,000,000` bytes**, `1080x1920` (portrait) or `1920x1080` (landscape), `30/1` fps, stereo `peak <= 0.96`.
 - [ ] Visually inspect 2 stills extracted from `< 10 MB` MP4 (`ss=2.2` & `ss=13.0`) via `read_file` to confirm crisp typography and band-free dark cobalt gradients.
 - [ ] Both files copied with exact verified byte parity to the target delivery folders.
 

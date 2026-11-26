@@ -68,6 +68,10 @@ Use these deterministic helpers from [motion_primitives.ts](../../templates/moti
    - Show live multi-user or multi-agent teamwork without prose by driving `3–4` distinct color-coded named pointers (`Alan`, `Jonny`, `Copple`, `Terry`) simultaneously across separate UI zones, pairing curved `evalCursorPos` arcs with `cursorPressState`.
 5. **Visual Inspector Bounding Box (`inspectorBoxPose` — Lovable style):**
    - On editor/builder beats, snap a crisp `1–2px` bounding box + floating component tag pill (e.g., `Header`) onto the hovered target element so live visual editing reads instantly.
+6. **Symmetric Split-Insert Centering Law (Zero Off-Center Prompts):**
+   - When splitting a sentence around an inserted prompt bar (e.g., `"Industri"` + `[Prompt]` + `"Menunggu."`), **never** apply asymmetric horizontal camera pan (`cam.x != 0`) or equal `translateX(±halfGap)` offsets to unequal-width flex words (which creates lopsided gaps). Lock `cam.x = 0`, center the prompt bar at `left: 50%; top: 50%; transform: translate(-50%, -50%)`, and anchor the left/right words symmetrically from center (`right: calc(50% + halfGap)` right-aligned; `left: calc(50% + halfGap)` left-aligned, where `halfGap = pillWidth / 2 + equalMargin`).
+7. **Collision-Bounce & Auto-Settle Physics (Metric Pairing):**
+   - Instead of leaving a lone stat ring sitting idle for 3 seconds (e.g., `70% Praktik`), launch its complementary partner (e.g., `30% Teori`) from off-screen to physically collide at the rim: fire `squashStretch` + rotational wobble + `clickRipple` shockwave + `burstParticlePose` sparks + `cameraRecoil` + impact thump SFX, then rebound both via `springBounce` into balanced side-by-side resting positions with opposing `ambientBreath` phases.
 
 ---
 
