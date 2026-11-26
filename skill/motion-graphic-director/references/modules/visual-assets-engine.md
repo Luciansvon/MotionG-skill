@@ -37,3 +37,11 @@ Whenever the approved Gate 2 storyboard explicitly calls for a Tier 3 `PNG`/`Web
   - Zero distorted AI fingers, garbled background text, or jagged alpha halos around cutouts.
   - Aspect ratio locked (`object-fit: cover/contain`, never squashed or stretched).
   - **Seamless 3D Studio PNG Card Blending:** When placing AI-generated 3D studio illustrations on colored cards (without alpha cutout), sample the image's **actual median border RGB hex** to set the card background color (never guess a nearby dark hex) and apply a soft radial vignette mask (`radial-gradient(ellipse 68% 68% at 50% 50%, black 46%, transparent 90%)`) so zero faint rectangular edge halo remains visible.
+
+---
+
+## 4. AI Generation Quota Discipline & Offline Typography
+
+1. **Cap Concurrent AI Image Requests (`2–3` Max):** Never fire `5+` `image-generator` subagents simultaneously (burst calls trigger HTTP 429 quota lockouts lasting hours). Limit AI generation strictly to `2–3` core photographic/organic subjects; build geometric backdrops, light shards, and graphic cards natively in Tier-1 SVG/CSS or Tier-2 `Three.js` for sharper edges and direct frame animation.
+2. **Offline `@fontsource/*` Packages Over Network Fonts:** Install local `@fontsource/<family>` packages using semver ranges (e.g., `^5.0.0`, never unverified exact patch numbers) instead of Google Fonts `<link>` tags so parallel Chromium render workers never stall or flash fallback fonts.
+3. **Wide Display Font Margin Check:** Ultra-wide display families (such as `Syne` 800) occupy significantly more horizontal width than geometric sans defaults. Always verify right/left edge clearance on rendered PNG stills before full video encoding.

@@ -40,7 +40,7 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 2. Screen format & destination (`9:16`, `16:9`, or dual).
 3. Runtime tier (`10–15s` micro, `18–25s` punchy, `30–45s` walkthrough).
 4. Visual direction (custom reference vs Styles `01–05`, `07–11`).
-5. Audio direction (non-VO + ASMR default vs `3–6` words/beat micro-VO; BGM choice).
+5. Audio direction (non-VO + ASMR default, `3–6` words/beat micro-VO, or pure original song audio with ZERO SFX for lyric/music edits per [lyric-kinetic-mode.md](./references/modules/lyric-kinetic-mode.md); BGM choice).
 6. Existing authentic brand logos, screenshots, or product photos.
 
 ### Gate 2: Segmented Storyboard & Asset Medium Manifest (Owner Approval Required)
@@ -63,10 +63,11 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
    - **Zero Flat Headline Fades:** Animate key copy word-by-word via `maskedWordRise` + `kineticExit`, accent keywords via `shimmerSweep` / `underlineDraw`, and real stats/progress via `rollingNumber`.
    - **Zero 1-Frame UI Teleports:** Pair curved pointer sweeps (`evalCursorPos`) with one press driver per click. Use `cursorPressState` + `clickRipple` or `cursorContactPose` for paired compression. Keep smooth `slotExpandSpring` drops, liquid `slidingPillPose` + `tactileTilt` tab clicks, `morphBox`, `iconToBarMorph`, `moodCardBlend`, `mascotLetterHop`, `evalMultiCursors`, `inspectorBoxPose`, `cardFanPose`, `splitInsertGap`, and restrained completion `burstParticlePose`.
    - For paired click compression or a two-scene slide with a masked cut, use `cursorContactPose` and `maskedSlidePose`. Set the contact and cut frames in the storyboard and use the [UI editing recipes](./references/modules/ui-editing-recipes.md) checks.
+   - **Lyric / Music-Driven Edits:** Load [lyric-kinetic-mode.md](./references/modules/lyric-kinetic-mode.md) for typography-first choreography (`75%–80%` spacious type, bold zoom/whip camera moves, brief interactive/3D `Three.js` supports, zero persistent static cards).
    - Use `2.35x–2.45x` macro zooms or `tetheredCameraFollow` pans with clamped backdrop parallax (`<= ±34px`) and optional `halftoneWaveCell` transitions, mount `<ThreeCanvas>` **OUTSIDE** `<CameraMotionBlur>`, never pass `frame` as a prop inside `<CameraMotionBlur>`, keep hero 3D phones around `57%–60%` height (`max_z < -0.5` for orbital rings).
 
 ### Gate 5: ASMR Tactile Sound Design & Audio Mastering
-1. Read [sound-asmr-engine.md](./references/modules/sound-asmr-engine.md) and adapt [mix_asmr_template.py](./templates/mix_asmr_template.py).
+1. Read [sound-asmr-engine.md](./references/modules/sound-asmr-engine.md) and adapt [mix_asmr_template.py](./templates/mix_asmr_template.py). *(For pure-music lyric edits, follow the zero-SFX protocol in [lyric-kinetic-mode.md](./references/modules/lyric-kinetic-mode.md): skip synthetic SFX and Silent Drops, apply stereo peak-safety limiting `<= 0.92`, and extract 60 FPS `audio-envelope.json`.)*
 2. Sync tactile ASMR cues (`Topre`/`Gateron` typing, soft glassy clicks, pentatonic drops, trimmed air whooshes, warm low-passed sub-thumps) to every bounce, drag-drop, and transition.
 3. Carve `2` brief **Silent Drops (`230–240 ms`)** before major turns and verify stereo (`-ac 2`) mastering: `peak <= 0.92`, `crest_db >= 14.0`, `dyn_p95_p10_db >= 12.0`.
 
@@ -104,6 +105,7 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 - [living-ui-physics.md](./references/modules/living-ui-physics.md) — Two-layer motion rules: staggered breathing UI, calibrated elastic bounce, kinetic typography (`maskedWordRise`/`rollingNumber`), liquid sliding pills, tactile tilts, drag-drop springs, and `MOTION` 1–3 calibration.
 - [visual-assets-engine.md](./references/modules/visual-assets-engine.md) — Strict `Code -> Three.js -> Optional PNG/WebP` hierarchy, 4-step sourcing fallback, anti-lazy-PNG & copyright rules.
 - [pacing-choreography.md](./references/modules/pacing-choreography.md) — Slow-Fast-Slow timing ratios, 10+ measured reference benchmarks, reading hold budgets.
+- [lyric-kinetic-mode.md](./references/modules/lyric-kinetic-mode.md) — Pure-music lyric/music edit protocol (zero SFX), typography-first anti-monotony choreography, 7 deterministic kinetic tricks, and persistent `Three.js` + React 19 + 4 GB VRAM rules.
 - [reference-video-extractor.md](./references/modules/reference-video-extractor.md) — Curated `rea-video` workflow for `@frame`-exact reference timing, camera speeds, glow colors, and SFX/stem extraction (excluding live-action/AI-film bloat).
 - [ui-editing-recipes.md](./references/modules/ui-editing-recipes.md) — Setup, action and visual proof, paired tactile clicks, two-part masked slides, and frame-level review.
 - [camera-and-3d.md](./references/modules/camera-and-3d.md) — Eye-guiding camera keyframes, macro UI focus, `2.4x` typing rail, Three.js 3D rules, CTA pixel-lock, continuity morphs.
@@ -113,7 +115,7 @@ Read [storyboard-segments.md](./references/modules/storyboard-segments.md) Secti
 - [pre-render-qc.md](./references/checklists/pre-render-qc.md) — Mandatory Phases A–D go/no-go verification checklist and 4-Block Delivery Gate before delivery.
 
 ### Reusable Templates & Tools (`templates/` & `scripts/`)
-- [motion_primitives.ts](./templates/motion_primitives.ts) — Ready-to-copy 60 FPS deterministic easing, camera rig, `tetheredCameraFollow`, recoil, shake, rack-focus, cursor arc + `evalMultiCursors` + pinch/ripples, calibrated springs (`springBounce`/`elasticPop`/`squashStretch`), kinetic typography (`maskedWordRise`/`rollingNumber`/`shimmerSweep`/`mascotLetterHop`), and tactile UI helpers (`slidingPillPose`/`tactileTilt`/`slotExpandSpring`/`iconToBarMorph`/`moodCardBlend`/`halftoneWaveCell`/`inspectorBoxPose`).
+- [motion_primitives.ts](./templates/motion_primitives.ts) — Ready-to-copy 60 FPS deterministic easing, camera rig, `tetheredCameraFollow`, recoil, shake, rack-focus, cursor arc + `evalMultiCursors` + `cursorContactPose` + pinch/ripples, `maskedSlidePose`, calibrated springs (`springBounce`/`elasticPop`/`squashStretch`), kinetic typography (`maskedWordRise`/`rollingNumber`/`shimmerSweep`/`mascotLetterHop`), and tactile UI helpers (`slidingPillPose`/`tactileTilt`/`slotExpandSpring`/`iconToBarMorph`/`moodCardBlend`/`halftoneWaveCell`/`inspectorBoxPose`).
 - [mix_asmr_template.py](./templates/mix_asmr_template.py) — Parameterized Python ASMR + BGM mixing & R128 mastering pipeline.
 - [check_contrast.py](./scripts/check_contrast.py) — Standalone exact-unrounded WCAG 2.x contrast checker (`4.5:1` text, `3.0:1` large display & UI boundaries, batch + `--selftest`).
 - [audit_pacing_and_audio.py](./scripts/audit_pacing_and_audio.py) — CLI analyzer measuring calm-vs-motion pacing ratio, `ffprobe` streams, and stereo audio peaks/crest/dynamics.

@@ -274,7 +274,12 @@ export const evalCursorPos = (
       const x = lerp(a.x, b.x, t);
       const y = lerp(a.y, b.y, t) - arc;
       const dx = b.x - a.x;
-      return { x, y, tilt: clamp(dx * 0.025, -14, 14) };
+      const travelTilt = clamp(dx * 0.025, -14, 14);
+      const entryBlend = i === 0 && rawT < 0.2 ? cubicInOut(rawT / 0.2) : 1;
+      const exitBlend =
+        i === waypoints.length - 2 && rawT > 0.8 ? 1 - cubicInOut((rawT - 0.8) / 0.2) : 1;
+      const tilt = lerp(-8, travelTilt, Math.min(entryBlend, exitBlend));
+      return { x, y, tilt };
     }
   }
   return { x: last.x, y: last.y, tilt: -8 };

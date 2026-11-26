@@ -30,3 +30,6 @@ Harsh stock FX (metallic camera shutters, classic clacking typewriters, cartooni
    - Normalize SFX bus to `0.85` peak, mix with `duck`-modulated BGM, apply smooth soft-knee tanh > `0.92`, then master:
      `loudnorm=I=-15.5:TP=-1.0:LRA=13:linear=false,alimiter=limit=0.90:level=false:attack=1:release=45`
    - Verified targets (`-ac 2`): **`peak <= 0.92`**, **`crest_db >= 14.0 dB`**, **`dyn_p95_p10_db >= 12.0 dB`**.
+
+## 4. Exception: Pure-Music Lyric & Song Edits
+For lyric videos or song-driven edits, **omit all synthetic ASMR SFX and artificial Silent Drops** — use 100% original music audio only. Apply gentle stereo peak-safety limiting (`<= 0.92`) plus brief edge fades (`0.15s` in / `0.70s` out), and extract a 60 FPS `audio-envelope.json` (`rms` + low-passed `bass`) for exact beat reactivity (see [lyric-kinetic-mode.md](./lyric-kinetic-mode.md)).

@@ -11,7 +11,7 @@ Before drafting a storyboard, conduct a concise, plain-language Q&A (1 compact r
 1. **Product & Core Message:** What product/feature are we showcasing, and what is the **1 key takeaway** the viewer must remember?
 2. **Screen Format & Destination:** Vertical mobile `9:16` (`1080x1920` IG Story/Reels/TikTok/Shorts), landscape `16:9` (`1920x1080` Web/YouTube), or dual-format?
 3. **Runtime Tier:** Quick hook (`10–15s`), punchy promo (`18–25s`), or full walkthrough (`30–45s`)?
-4. **Visual Direction:** Custom reference images/videos supplied (triggers Style `06`), or select/blend from Styles `01–05` and `07–10`?
+4. **Visual Direction:** Custom reference images/videos supplied (triggers Style `06`), or select/blend from Styles `01–05` and `07–11`?
 5. **Audio Direction:** Non-VO + ASMR tactile SFX (default), or ultra-short micro-VO (`3–6 words` per beat) + custom or curated BGM?
 6. **Existing Brand Assets:** Does the owner already have authentic brand logos, real app screenshots, or product photos?
 

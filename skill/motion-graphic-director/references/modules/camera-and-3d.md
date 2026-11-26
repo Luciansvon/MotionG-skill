@@ -24,6 +24,8 @@ Standard `1.15x` zoom makes typing scenes feel distant. For true tactile typing 
 
 - **Mount `<ThreeCanvas>` OUTSIDE `<CameraMotionBlur>`:** Wrapping WebGL Three.js canvases inside Remotion's multi-sample `<CameraMotionBlur>` breaks frames or degrades render consistency. Keep `<Phone3DStage />` as a sibling beneath `<CameraMotionBlur shutterAngle={135} samples={4}>`.
 - **Internal Frame Reads Only:** NEVER pass `frame` as a prop to components rendered inside `<CameraMotionBlur>`. Remotion evaluates sub-frames by changing `useCurrentFrame()` across shutter samples — any stage inside `<CameraMotionBlur>` that receives a fixed parent `frame` prop freezes without motion blur! Every stage child must call `const frame = useCurrentFrame()` itself.
+- **Persistent `<ThreeCanvas>` & Layering Discipline:** Keep **1 persistent `<ThreeCanvas>`** (`gl={{ alpha: true, antialias: true }}`) mounted across acts and toggle per-act `<group visible={...}>` instead of tearing down WebGL contexts mid-timeline. Paint solid/flash stage backgrounds **behind** `<ThreeCanvas>` (keeping foreground act overlays `background: "transparent"`) so 3D elements remain visible behind typography.
+- **Bundle Reuse & 4 GB VRAM Concurrency:** Bundle once via `npx remotion bundle src/index.tsx --out-dir=out/bundle` (never positional) to reuse across stills/renders, and cap `--concurrency=6` (or `4`) when `<ThreeCanvas>` is active on 4 GB VRAM GPUs (see [lyric-kinetic-mode.md](./lyric-kinetic-mode.md)).
 
 ## 4. Three.js 3D Hardware Scale, Z-Clearance & CTA Pixel-Lock
 
