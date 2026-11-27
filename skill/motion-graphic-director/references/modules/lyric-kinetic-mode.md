@@ -19,8 +19,24 @@ When the owner specifies a lyric or song edit (no product UI demo SFX):
 ## 2. Typography-First Anti-Monotony Law
 
 1. **75%–80% Spacious Typography Ownership:** Keep the stage clean, high-contrast, and ruled by display typography. Never park a giant `500px+` player card or static 3-card wall on screen across multiple beats (`> 1.5s`), and avoid thick cluttered waveform walls.
-2. **Supporting Elements Must Be Brief & Purposeful:** Pointers, vinyl discs, album photos, 3D props, and mini player pills enter for one concrete interaction or spatial accent, then exit cleanly. Close with an ultra-slim capsule (`height ~68px`) if track metadata is shown.
+2. **Supporting Elements Must Be Brief & Purposeful:** Pointers, vinyl discs, album photos, 3D props, and mini player pills enter for one concrete interaction or spatial accent, then exit cleanly. Close with an ultra-slim capsule (`height ~68px`) if track metadata is shown. **Ban unrequested VU meters / audio gauges:** Never park decorative orchestral gauges or fake level widgets in a storytelling opening unless explicitly requested by the owner.
 3. **Aggressive Camera & Beat Variety (`1.0–2.5s` cadence):** Vary scale, rotation, polarity, or interactive trick every beat while keeping `near_static_pct < 28%` and readable `calm_float_or_read_pct` in `55%–83%`.
+
+### 2.1 Eye-Trace Text Anchor Consistency & Outgoing Clearance
+- **Maximum `2–3` Deliberate Anchor Zones:** Keep primary verse phrases along a predictable reading rhythm (`1` consistent editorial rail such as `X = 110..740px` + `1` optical climax center `X = 960px`, shifting right only when an intentional camera glide guides the eye there). Hold verse vertical baselines steadily inside a comfortable reading band (`Y ~ 34%–62%`) instead of scattering lines randomly across top-left, bottom-right, top-right, and bottom-left corners.
+- **Zero Edge-Clipped Trailing Words:** Always fade outgoing phrases smoothly down to `opacity: 0` BEFORE the camera pans or zooms away to the next phrase so stray sliced letters never linger at screen borders.
+- **Focal Subject Breathing Room:** Maintain `>= 80px` visual clearance between headline bounding boxes and key illustration silhouettes/focal objects (e.g., baroque mirror frames, crowns, spotlight figures).
+
+### 2.2 Non-Sliding Transition Diversity & Zero-Blank-Wall Law
+- **Zero Opaque Blank Flash Walls:** Never drop full-screen solid-color rectangle/circle wipes between acts that briefly leave the screen empty; bridge acts with overlapping visual continuity.
+- **Never Repeat Flat Directional Slides:** Do not stack vertical/horizontal slides back-to-back across consecutive cuts. Combine distinct non-sliding cinema techniques matched to the lyric:
+  1. **Pixel-Locked Letter-Hole Dive:** Lock glyph center via `gridTemplateColumns: "1fr auto 1fr"` (or fixed focus point), zoom camera `1.2x -> 9.8x` straight into `"O"`, while expanding a pixel-exact `clipPath: circle(rPx at 50% 50%)` + matching gold rim into the next world.
+  2. **Focal-Object Dive -> Shaped Oval Iris:** Zoom into a scene centerpiece (e.g., antique mirror glass) and reveal the incoming scene through a tall expanding `clipPath: ellipse(rx ry at 50% 50%)` with glowing border rim.
+  3. **Cascading Multi-Column Louver Reveal:** Split the incoming scene into `5` vertical strips via `clipPath: inset(0 R% 0 L%)` (`0.2%` strip overlap to prevent hairline seams) staggered `3` frames apart, with thin illuminated gold leading-edge glints.
+  4. **True 3D Perspective Sleeve/Card Flip:** Rotate outgoing scene (`perspective(2200px) rotateY(0 -> -90deg)`) up to exact `CUT - 1` (strictly unmounted at `CUT`) and swing incoming scene (`rotateY(+90deg -> 0deg)`) synchronized with any `Three.js` prop Y-rotation over a soft stage spotlight backing.
+  5. **Diagonal Kintsugi Shatter-Split:** On heavy drum transients, slice a frozen frame of the outgoing scene into `2` `clipPath: polygon(...)` shards blasting apart diagonally while an illuminated molten-gold fault SVG flashes along the split line.
+  6. **Opposing Split-Text Snap -> Center Curtain Seam:** Drive upper/lower letter halves (`clipPath: inset(0 0 49.5% 0)` vs `inset(49.5% 0 0 0)`) together on impact, then zoom into an igniting vertical gold seam that parts stage curtains cleanly.
+  7. **Concentric 3D Match-Cut + Optic Rack-Focus:** Contract 3D tunnel rings inward (`scale: 1.95 -> 1.24`) as they optically cross-dissolve (`blur` + `opacity` + subtle additive screen bloom) straight into circular clockwork geometry.
 
 ### Proven 7-Trick Kinetic Catalog (Deterministic 60 FPS)
 1. **Magnifying Lens & 3D Echo Clones:** Glide a circular lens (`clipPath: circle(R at X Y)`) across blurred base type revealing a razor-sharp `1.22x` scaled clone inside, followed by concentric stroked echo outlines (`-webkit-text-stroke`) on vocal harmonies.

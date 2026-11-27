@@ -22,10 +22,12 @@ Whenever the approved Gate 2 storyboard explicitly calls for a Tier 3 `PNG`/`Web
 
 1. **Owner's Authentic Assets First:** Always use real brand logos, authentic product photos, or supplied screenshots in the workspace before generating or searching anything else.
 2. **AI Image Generation (`image-generator` / installed generator):** Generate lighting-, angle-, and palette-matched visuals aligned with `DESIGN.md`; export clean alpha-transparent **`PNG`** for pop-out cutouts or high-efficiency **`WebP`** for full-bleed photos/posters.
-3. **Royalty-Free Commercial Stock:** When real-world photography fits better or generation is unavailable, fetch free commercial-safe stock from **Unsplash, Pexels, Wikimedia Commons, or Pixabay**.
+3. **Royalty-Free Commercial Stock & Public-Domain Museum Art:** When real-world photography fits better or AI generation hits quota (`HTTP 429`), fetch free commercial-safe stock or Public Domain fine-art paintings (`>= 1920px`) from **Unsplash, Pexels, Wikimedia Commons, or Pixabay**:
+   - **Wikimedia Commons Museum Pipeline:** Query Wikimedia API (`action=query&prop=imageinfo&iiprop=url|size&iiurlwidth=1920`) with an explicit `User-Agent` header and `>= 1.0s` delay between downloads, then run a Python Pillow/NumPy chiaroscuro color-grading script (palette shadow/highlight LUT, `8%–12%` edge feathering into stage hex, and targeted text-zone readability scrim) so external paintings match `DESIGN.md` and AI-generated scenes seamlessly.
    - **Anti-Bot Compliance:** NEVER bypass CAPTCHAs or Cloudflare gates (if Pixabay or another site blocks automated fetching, switch immediately to Unsplash/Pexels/Wikimedia or request from owner).
    - **Pinterest Copyright Rule:** Treat Pinterest strictly as **visual moodboard / inspiration reference ONLY** (most pins carry third-party copyright). Do NOT pull Pinterest images into public/commercial exports unless the owner explicitly provides them for private/internal mockups.
 4. **Honest Stop & Owner Request:** If automated generation and safe stock cannot provide the exact subject (e.g., a specific physical product), stop honestly and ask the owner — never ship ugly blank gray placeholder boxes.
+   - **Anti-Primitive-3D-Stand-In Ban:** NEVER substitute crude `Three.js` primitive stacks (`boxGeometry` matchsticks, low-poly octagonal mirror cylinders, floating dark octahedrons) for organic, scenic, or storytelling illustrations (faces, antique mirrors, birds, storms, people) when AI generation runs out of quota. Keep `Three.js` strictly for clean mechanical/hardware hero props (turntable vinyl + tonearm, smartphones, circular tunnel rings, brass clockwork) and fall back to color-graded Wikimedia Public Domain paintings or ask the owner honestly.
 
 ---
 

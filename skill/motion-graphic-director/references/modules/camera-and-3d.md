@@ -67,3 +67,14 @@ Standard `1.15x` zoom makes typing scenes feel distant. For true tactile typing 
    - On dark monochrome beats, transition hero UI cards and pill CTAs (`Visit ↗`) from soft optic defocus (`blur(12px) -> blur(0px)`) paired with restrained rim bloom (`max 1–2` glowing targets per frame) so depth reads like a real cinema lens.
 3. **Halftone Dot-Matrix Transformation (`halftoneWaveCell` — `V6 Supabase`):**
    - When morphing a natural-language prompt into live SQL/code or data tables, drive a radial grid of glowing dots via `halftoneWaveCell(col, row, cols, rows, frame, triggerFrame)` so the sweeping dot wave masks the underlying swap cleanly without an abrupt hard cut.
+
+## 8. Unified Single-World 2.5D Camera & Focus-Locked Zoom Math
+
+Disconnected camera rigs make backgrounds look frozen while foreground words and 3D primitives drift randomly:
+
+1. **Wrap All Layers in One Synchronized Camera World:** Never freeze the stage illustration/backdrop while CSS-translating typography alone, and never add random object jitter just to lower static percentages. Nest:
+   - **Layer 0 (Overscanned Backdrop/Painting `134%` wide/tall, `-17%` offset):** Moves at `0.65x` camera translation (`tx`, `ty`), `1 + (scale - 1) * 0.88` zoom, and `rotZ` — zero exposed border seams.
+   - **Layer 1 (Atmosphere / Floating Dust / Lighting Rays):** Moves at `0.85x` translation, `1 + (scale - 1) * 0.95` zoom, and `rotZ`.
+   - **Layer 2 (Hero Typography & Story Accents):** Moves at full `1.0x` (`tx`, `ty`, `scale`, `rotZ`), staying anchored calmly in world space while the cinema camera glides between beats.
+2. **Use Drift-Free `focusToTransform` + `evalFocusTrack` (`motion_primitives.ts`):** Instead of guessing manual `x/y` offsets during zoom-ins (where targets drift off-screen as `scale` climbs from `1.0x -> 9.8x`), specify world anchor `(focusX, focusY)` and desired screen target `(screenX, screenY)` so `tx = screenX - cx - (focusX - cx) * scale` keeps the exact letter hole or artwork centerpiece pixel-locked at any magnification.
+3. **Lock 3D Camera & 2D Flip Tempo Together:** Whenever `ThreeStage3D` shares an act with 2D layers (e.g., `VinylRecord3D` during a `rotateY` sleeve flip or `ACT6` rings contracting into `ACT7` astrolabes), match camera keyframes, Y-angles, and push/pull speeds identically across 2D and 3D rigs.

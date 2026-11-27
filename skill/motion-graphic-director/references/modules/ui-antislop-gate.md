@@ -36,7 +36,7 @@ Allowed **only** when serving a clear compositional or story job:
 - **`R-19` Purposeful Motion:** Every motion drives eye guidance, state response, or subtle `ambientBreath` life — zero restless endless wallpaper loops that distract from reading.
 
 ### Tier 3 — Quality Locks (What Makes It Feel Designed, Not Templated)
-- **`R-05` Anti-Uniform Act Rhythm:** Never repeat the exact same visual composition across consecutive beats/acts (e.g., centered headline + middle card + bottom 5-step bar on all three mockups). Vary framing, scale, background polarity, or camera plane intentionally between acts.
+- **`R-05` Anti-Uniform Act Rhythm (Within Eye-Trace Anchor Discipline):** Never repeat the exact same visual composition across consecutive beats/acts (e.g., centered headline + middle card + bottom 5-step bar on all three mockups). Vary framing, scale, background polarity, or camera plane intentionally between acts — while keeping primary text anchored within **`2–3` consistent eye-trace zones** (`1` editorial reading rail + `1` centerpiece axis) so layouts never scatter unpredictably across random screen corners.
 - **`R-20` Swap-Logo Test:** Ask honestly: *"If the brand name and logo were swapped for a competitor, would this video still feel uniquely authored, or like a blank template?"* If generic, redesign layout + motif before rendering.
 - **`R-29` Palette Cap:** Maximum **2–3 core surfaces/inks + 1 deliberate accent** color per video (unless executing explicit multi-brand act flips in Styles `03` or `08`).
 - **`R-31` Keystone Rule:** Every major design decision in `DESIGN.md` (palette, font pairing, accent, surface treatment, animation motif) must include a **1-line rationale** explaining why it serves this product and story.

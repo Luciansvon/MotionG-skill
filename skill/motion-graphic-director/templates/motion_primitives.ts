@@ -1050,3 +1050,72 @@ export const inspectorBoxPose = (
     tagOpacity: clamp(progress(frame, hoverFrame + 2, Math.max(4, durationFrames - 4)), 0, 1),
   };
 };
+
+/* ── FOCUS-LOCKED UNIFIED SINGLE-WORLD CAMERA HELPERS ── */
+
+export type FocusPose = {
+  focusX: number;
+  focusY: number;
+  screenX: number;
+  screenY: number;
+  scale: number;
+  rotZ: number;
+};
+
+export type FocusKey = FocusPose & {
+  frame: number;
+  ease?: "linear" | "cubicInOut" | "snappyOut" | "snappyInOut";
+};
+
+const applyFocusEase = (t: number, ease: FocusKey["ease"]): number => {
+  if (ease === "snappyOut") return snappyOut(t);
+  if (ease === "snappyInOut") return snappyInOut(t);
+  if (ease === "cubicInOut") return cubicInOut(t);
+  return t;
+};
+
+/**
+ * Evaluates a keyframed world-target camera track for unified 2.5D parallax scenes.
+ */
+export const evalFocusTrack = (frame: number, keys: readonly FocusKey[]): FocusPose => {
+  if (keys.length === 0) {
+    return { focusX: 960, focusY: 540, screenX: 960, screenY: 540, scale: 1, rotZ: 0 };
+  }
+  if (frame <= keys[0].frame) return keys[0];
+  if (frame >= keys[keys.length - 1].frame) return keys[keys.length - 1];
+  for (let i = 0; i < keys.length - 1; i++) {
+    const a = keys[i];
+    const b = keys[i + 1];
+    if (frame >= a.frame && frame <= b.frame) {
+      const span = Math.max(1, b.frame - a.frame);
+      const t = applyFocusEase((frame - a.frame) / span, b.ease ?? "cubicInOut");
+      return {
+        focusX: lerp(a.focusX, b.focusX, t),
+        focusY: lerp(a.focusY, b.focusY, t),
+        screenX: lerp(a.screenX, b.screenX, t),
+        screenY: lerp(a.screenY, b.screenY, t),
+        scale: lerp(a.scale, b.scale, t),
+        rotZ: lerp(a.rotZ, b.rotZ, t),
+      };
+    }
+  }
+  return keys[keys.length - 1];
+};
+
+/**
+ * Converts a FocusPose into drift-free translate3d/scale/rotate components centered at (frameWidth/2, frameHeight/2).
+ */
+export const focusToTransform = (
+  pose: FocusPose,
+  frameWidth = 1920,
+  frameHeight = 1080
+): { tx: number; ty: number; scale: number; rotZ: number } => {
+  const cx = frameWidth * 0.5;
+  const cy = frameHeight * 0.5;
+  return {
+    tx: pose.screenX - cx - (pose.focusX - cx) * pose.scale,
+    ty: pose.screenY - cy - (pose.focusY - cy) * pose.scale,
+    scale: pose.scale,
+    rotZ: pose.rotZ,
+  };
+};
